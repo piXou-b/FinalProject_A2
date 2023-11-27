@@ -81,7 +81,7 @@ public class Joueur
         {
             if (word.Length != mot.Length)
             {
-                break;
+                result = false;
             }
             else
             {
