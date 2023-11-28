@@ -3,34 +3,66 @@ using System.IO;
 
 public class Dictionnaire
 {
-    private string _language;
-    private List<string> dictionnaire;
+    private List<string> _dictionnaire;
     
-    public Dictionnaire(string language)
+    public Dictionnaire()
     {
-        this._language = language;
-        this.dictionnaire = new List<string>();
+        this._dictionnaire = new List<string>();
+        RemplirDico(this._dictionnaire);
     }
 
-    public string toString()
+    void RemplirDico(List<string> list)
     {
-        string line = "";
+        string word = "";
         try
         {
-            StreamReader sr = new StreamReader("Final_Project/FinalProject/Mots_Français.txt");
-            line = sr.ReadLine();
-            while (line != null)
+            StreamReader dico = new StreamReader("Final_Project/FinalProject/Mots_Français.txt");
+            word = dico.ReadLine();
+            while (word != null)
             {
-                Console.WriteLine(line);
-                line = sr.ReadLine();
+                list.Add(word);
+                word = dico.ReadLine();
             }
-            sr.Close();
+            dico.Close();
         }
         catch(Exception e)
         {
             Console.WriteLine("Exception: " + e.Message);
         }
+    }
+    public string toString()
+    {
+        string result = "Nombre de mots par lettre: ";
+        
+        int count = 0;
+        string letter = "";
+        try
+        {
+            StreamReader lettres = new StreamReader("Final_Project/FinalProject/Lettre.txt");
+            letter = lettres.ReadLine();
+            while (letter != null)
+            {
+                for(int i = 0; i < _dictionnaire.Count; i++)
+                {
+                    if (Convert.ToChar(letter) == _dictionnaire[i][0])
+                    {
+                        count++;
+                    }
+                }
 
-        return line;
+                result += "\n" + letter + ": " + count; 
+
+                count = 0;
+                letter = lettres.ReadLine();
+            }
+            lettres.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        
+
+        return result + "\nLangue: Français";
     }
 }
