@@ -6,25 +6,25 @@ public class Joueur
     /// Attributs
     /// </summary>
     private string _name;
+
     private List<string> _words;
     private int _score;
 
-   /// <summary>
-   /// Constructeur
-   /// </summary>
-   /// <param name="name"></param>
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="name"></param>
     public Joueur(string name)
     {
         this._name = name;
-        this._words = null;
+        this._words = new List<string>();
         this._score = 0;
-        
-        //pas sur que le constructeur soit bon;
     }
-    
-   /// <summary>
-   /// Properties
-   /// </summary>
+
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public string Name { get => _name; }
     public List<string> Words { get => _words; }
     public int Score { get => _score; }
 
@@ -46,17 +46,7 @@ public class Joueur
     /// <returns>Retourne une chaîne de caractères qui décrit un joueur</returns>
     public string toString()
     {
-        string s = this._name + ";" + this._score + ";\n";
-        if(_words != null)
-        {
-            for (int i = 0; i < _words.Count - 1; i++)
-            {
-                s += _words[i] + ";";
-            }
-            s += _words[_words.Count - 1] + "\n";
-        }
-
-        return s;
+        return $"Joueur: {Name}\nScore: {Score}\nMots trouvés: {string.Join(", ", Words)}";
     }
 
     /// <summary>
@@ -75,26 +65,14 @@ public class Joueur
     /// <returns>Retourne un booléen si oui ou non le mot est présent</returns>
     public bool Contient(string mot)
     {
-        bool result = true;
-        
         foreach (string word in Words)
         {
-            if (word.Length != mot.Length)
+            if (word == mot)
             {
-                result = false;
-            }
-            else
-            {
-                for (int i = 0; i < mot.Length; i++)
-                {
-                    if (mot[i] != word[i])
-                    {
-                        result = false;
-                    }
-                }
+                return true;
             }
         }
 
-        return result;
+        return false;
     }
 }
