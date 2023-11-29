@@ -98,11 +98,10 @@ public class Dictionnaire
 
     public bool RechDicoRecursif(string mot, int deb, int fin)
     {
-
+        int mid = (deb + fin) / 2;
         if (deb <= fin)
         {
-            int mid = (deb + fin) / 2;
-            int comparison = String.Compare(mot ,this._dictionnaire[mid], StringComparison.OrdinalIgnoreCase);
+            int comparison = String.Compare(mot,this._dictionnaire[mid], StringComparison.OrdinalIgnoreCase);
 
             if (comparison == 0)
             {
@@ -110,13 +109,13 @@ public class Dictionnaire
             }
             else if (comparison < 0)
             {
-                Console.WriteLine("gauche");
-                return RechDicoRecursif(mot, deb, mid - 1);
+                return RechDicoRecursif(mot, deb, mid-1);
+                
             }
             else
             {
-                Console.WriteLine("droite");
-                return RechDicoRecursif(mot, mid + 1, fin);
+                return RechDicoRecursif(mot, mid+1, fin);
+                
             }
             
         }
