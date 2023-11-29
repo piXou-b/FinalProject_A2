@@ -16,17 +16,25 @@ public class Dictionnaire
     
     void RemplirDico(List<string> list)
     {
-        string word;
+        string line;
         try
         {
             StreamReader dico = new StreamReader("files/Mots_Français.txt");
-            word = dico.ReadLine();
-            while (word != null)
+            while ((line = dico.ReadLine()) != null)
             {
-                list.Add(word);
-                word = dico.ReadLine();
+                string[] words = line.Split(' ');
+                list.AddRange(words);
             }
+
             dico.Close();
+        }
+        catch(FileNotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(IOException e)
+        {
+            Console.WriteLine(e.Message);
         }
         catch(Exception e)
         {
