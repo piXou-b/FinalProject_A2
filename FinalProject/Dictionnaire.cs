@@ -67,7 +67,7 @@ public class Dictionnaire
         return result + "\nLangue: Français";
     }
     
-    static void QuickSort(List<string> arr, int low, int high)
+    public void QuickSort(List<string> arr, int low, int high)
     {
         if (low < high)
         {
@@ -93,6 +93,36 @@ public class Dictionnaire
 
             QuickSort(arr, low, partitionIndex - 1);
             QuickSort(arr, partitionIndex + 1, high);
+        }
+    }
+
+    public bool RechDicoRecursif(string mot, int deb, int fin)
+    {
+
+        if (deb <= fin)
+        {
+            int mid = (deb + fin) / 2;
+            int comparison = String.Compare(mot ,this._dictionnaire[mid], StringComparison.OrdinalIgnoreCase);
+
+            if (comparison == 0)
+            {
+                return true;
+            }
+            else if (comparison < 0)
+            {
+                Console.WriteLine("gauche");
+                return RechDicoRecursif(mot, deb, mid - 1);
+            }
+            else
+            {
+                Console.WriteLine("droite");
+                return RechDicoRecursif(mot, mid + 1, fin);
+            }
+            
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -11,5 +11,7 @@ Console.WriteLine(joueur.toString());
 Console.WriteLine();
 Dictionnaire dico = new Dictionnaire();
 Console.WriteLine(dico.toString());
+string str = "VIN";
+Console.WriteLine(dico.RechDicoRecursif(str.ToUpper(), 0, str.Length-1));
 
 
