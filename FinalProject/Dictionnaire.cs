@@ -79,15 +79,10 @@ public class Dictionnaire
                 if (string.Compare(arr[j], pivot, StringComparison.Ordinal) < 0)
                 {
                     i++;
-                    string temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+                    (arr[i], arr[j]) = (arr[j], arr[i]);
                 }
             }
-
-            string temp1 = arr[i + 1];
-            arr[i + 1] = arr[high];
-            arr[high] = temp1;
+            (arr[i + 1], arr[high]) = (arr[high], arr[i + 1]);
 
             int partitionIndex = i + 1;
 
@@ -110,14 +105,11 @@ public class Dictionnaire
             else if (comparison < 0)
             {
                 return RechDicoRecursif(mot, deb, mid-1);
-                
             }
             else
             {
                 return RechDicoRecursif(mot, mid+1, fin);
-                
             }
-            
         }
         else
         {
