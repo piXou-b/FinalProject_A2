@@ -16,6 +16,6 @@
 
 Console.WriteLine();
 Plateau plateau = new Plateau();
-plateau.SetRndPlateau();
+plateau.SetPlateau();
 Console.WriteLine(plateau.toString());
 
