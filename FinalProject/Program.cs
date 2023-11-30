@@ -16,6 +16,7 @@
 
 Console.WriteLine();
 Plateau plateau = new Plateau();
-plateau.SetPlateau();
 Console.WriteLine(plateau.toString());
+Plateau plateau2 = new Plateau("files/Test1.csv");
+Console.WriteLine(plateau2.toString());
 
