@@ -17,6 +17,10 @@
 Console.WriteLine();
 Plateau plateau = new Plateau();
 Console.WriteLine(plateau.toString());
+plateau.ToFile("files/Saved_Plateau");
 Plateau plateau2 = new Plateau("files/Test1.csv");
 Console.WriteLine(plateau2.toString());
+Console.WriteLine("Entrez un mot");
+string mot = Console.ReadLine();
+Console.WriteLine(plateau2.Recherche_Mot(mot.ToUpper()));
 

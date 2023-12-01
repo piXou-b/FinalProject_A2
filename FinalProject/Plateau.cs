@@ -16,7 +16,7 @@ public class Plateau
         ToRead(filename);
     }
 
-    public string[,] SetRndPlateau()
+    public void SetRndPlateau()
     {
         try
         {
@@ -74,8 +74,10 @@ public class Plateau
         {
             Console.WriteLine("Exception: " + e.Message);
         }
-        
-        return this._plateau;
+        finally
+        {
+            Console.Write("");
+        }
     }
 
     public void ToRead(string filename)
@@ -107,6 +109,10 @@ public class Plateau
         {
             Console.WriteLine("Exception: " + e.Message);
         }
+        finally
+        {
+            Console.Write("");
+        }
     }
 
     public string toString()
@@ -134,6 +140,110 @@ public class Plateau
             result += "|" + Environment.NewLine;
         }
         result += " ------------------------";
+
+        return result;
+    }
+
+    public void ToFile(string filename)
+    {
+        try
+        {
+            StreamWriter sw = new StreamWriter(filename, false);//voir si il faut mettre true ou false(creer un nouveau fichier a chaque fois avec un indice unique clocksystem)
+            for (int i = 0; i < this._plateau.GetLength(0); i++)
+            {
+                for (int j = 0; j < this._plateau.GetLength(1); j++)
+                {
+                    if (j == this._plateau.GetLength(1)-1)
+                    {
+                        sw.Write(this._plateau[i, j]);
+                    }
+                    else
+                    {
+                        sw.Write(this._plateau[i, j] + ";");
+                    }
+                }
+                sw.WriteLine();
+            }
+            sw.WriteLine();
+            sw.Close();
+        }
+        catch(FileNotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(IOException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.Write("");
+        }
+    }
+
+    public (bool, int, int) Voisin(string letter, int coorI, int coorJ)
+    {
+        if (letter == this._plateau[coorI, coorJ + 1])
+        {
+            return (true, coorI, coorJ + 1);
+        }
+
+        if (letter == this._plateau[coorI, coorJ - 1])
+        {
+            return (true, coorI, coorJ - 1);
+        }
+
+        if (letter == this._plateau[coorI - 1, coorJ + 1])
+        {
+            return (true, coorI - 1, coorJ + 1);
+        }
+
+        if (letter == this._plateau[coorI - 1, coorJ])
+        {
+            return (true, coorI - 1, coorJ);
+        }
+
+        if (letter == this._plateau[coorI - 1, coorJ - 1])
+        {
+            return (true, coorI - 1, coorJ - 1);
+        }
+
+        return (false, 0, 0);
+    }
+
+    public object Recherche_Mot(string mot)
+    {
+        int letterIndex0 = 0;
+        int letterIndex1 = 0;
+        bool result = true;
+        (bool, int, int) voisin = (true, letterIndex0, letterIndex1);
+        do
+        {
+            for (int i = 1; i < mot.Length; i++)
+            {
+                for (int j = 0; j < this._plateau.GetLength(1); j++)
+                {
+                    if (mot[0].ToString() == this._plateau[this._plateau.GetLength(0) - 1, j])
+                    {
+                        letterIndex1 = j;
+                        letterIndex0 = this._plateau.GetLength(0) - 1;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                voisin = Voisin(mot[i].ToString(), letterIndex0, letterIndex1);
+                if (!voisin.Item1)
+                {
+                    result = false;
+                }
+            }
+        } while (voisin.Item1);
 
         return result;
     }

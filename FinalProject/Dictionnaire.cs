@@ -3,8 +3,14 @@ using System.IO;
 
 public class Dictionnaire
 {
+    /// <summary>
+    /// Attributs
+    /// </summary>
     private List<string> _dictionnaire;
     
+    /// <summary>
+    /// Constructeur
+    /// </summary>
     public Dictionnaire()
     {
         this._dictionnaire = new List<string>();
@@ -12,8 +18,15 @@ public class Dictionnaire
         QuickSort(this._dictionnaire, 0, _dictionnaire.Count-1);
     }
     
+    /// <summary>
+    /// Properties
+    /// </summary>
     public List<string> Dico { get => _dictionnaire; }
     
+    /// <summary>
+    /// Remplir la list donner en paramètre par les mots du fichier Mots_Français 
+    /// </summary>
+    /// <param name="list"></param>
     void RemplirDico(List<string> list)
     {
         string line;
@@ -42,6 +55,10 @@ public class Dictionnaire
         }
     }
     
+    /// <summary>
+    /// description du dictionnaire
+    /// </summary>
+    /// <returns>le nombre de mots par lettre et la langue</returns>
     public string toString()
     {
         string result = "Nombre de mots par lettre: ";
@@ -67,6 +84,12 @@ public class Dictionnaire
         return result + "\nLangue: Français";
     }
     
+    /// <summary>
+    /// Tri du dictionnaire en ordre alphabétique en O(nlog(n))
+    /// </summary>
+    /// <param name="arr"></param>
+    /// <param name="low"></param>
+    /// <param name="high"></param>
     public void QuickSort(List<string> arr, int low, int high)
     {
         if (low < high)
@@ -90,7 +113,14 @@ public class Dictionnaire
             QuickSort(arr, partitionIndex + 1, high);
         }
     }
-
+    
+    /// <summary>
+    /// teste si le mot appartient bien au dictionnaire
+    /// </summary>
+    /// <param name="mot"></param>
+    /// <param name="deb"></param>
+    /// <param name="fin"></param>
+    /// <returns>true ou false</returns>
     public bool RechDicoRecursif(string mot, int deb, int fin)
     {
         int mid = (deb + fin) / 2;
