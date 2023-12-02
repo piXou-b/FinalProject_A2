@@ -185,66 +185,99 @@ public class Plateau
         }
     }
 
-    public (bool, int, int) Voisin(string letter, int coorI, int coorJ)
+    public List<(int, int)> Voisin(string letter, int coorI, int coorJ)
     {
-        if (letter == this._plateau[coorI, coorJ + 1])
+        List<(int, int)> validCoords = new List<(int, int)>();
+        
+        if (coorJ + 1 < this._plateau.GetLength(1) && letter == this._plateau[coorI, coorJ + 1])
         {
-            return (true, coorI, coorJ + 1);
+            validCoords.Add((coorI, coorJ + 1));
         }
 
-        if (letter == this._plateau[coorI, coorJ - 1])
+        if (coorJ - 1 >= 0 && letter == this._plateau[coorI, coorJ - 1])
         {
-            return (true, coorI, coorJ - 1);
+            validCoords.Add((coorI, coorJ - 1));
         }
 
-        if (letter == this._plateau[coorI - 1, coorJ + 1])
+        if (coorI - 1 >= 0 && coorJ + 1 < this._plateau.GetLength(1) && letter == this._plateau[coorI - 1, coorJ + 1])
         {
-            return (true, coorI - 1, coorJ + 1);
+            validCoords.Add((coorI - 1, coorJ + 1));
         }
 
-        if (letter == this._plateau[coorI - 1, coorJ])
+        if (coorI - 1 >= 0 && letter == this._plateau[coorI - 1, coorJ])
         {
-            return (true, coorI - 1, coorJ);
+            validCoords.Add((coorI - 1, coorJ));
         }
 
-        if (letter == this._plateau[coorI - 1, coorJ - 1])
+        if (coorI - 1 >= 0 && coorJ - 1 >= 0 && letter == this._plateau[coorI - 1, coorJ - 1])
         {
-            return (true, coorI - 1, coorJ - 1);
+            validCoords.Add((coorI - 1, coorJ - 1));
         }
 
-        return (false, 0, 0);
+        return validCoords;
     }
 
-    public object Recherche_Mot(string mot)
+    public bool Recherche_Mot(string mot)//demander au prof de complexité de l'aide car la blocage
     {
-        int letterIndex0 = 0;
-        int letterIndex1 = 0;
+        //en gros la fonction va sauvegarder les coord des voisins ok et ensuite va verifier ceux d'apres et supprimer ceux qui n'ont pas correspondu => les list sont vide ca veux dire que le mot n'a plus de voisins donc c'est faux
+        List<int> letterIndices0 = new List<int>();
+        List<int> letterIndices1 = new List<int>();
+        List<(int, int)> coordMot = new List<(int, int)>();
         bool result = true;
-        (bool, int, int) voisin = (true, letterIndex0, letterIndex1);
-        do
+        
+        for (int j = 0; j < this._plateau.GetLength(1); j++)
         {
-            for (int i = 1; i < mot.Length; i++)
+            if (mot[0].ToString() == this._plateau[this._plateau.GetLength(0) - 1, j])
             {
-                for (int j = 0; j < this._plateau.GetLength(1); j++)
+                letterIndices1.Add(j);
+                letterIndices0.Add(this._plateau.GetLength(0) - 1);
+                coordMot.Add((this._plateau.GetLength(0) - 1,j));
+            }
+        }
+        if (letterIndices0.Count == 0)
+        {
+            return false;
+        }
+        
+        for (int i = 1; i < mot.Length; i++)
+        {
+            List<(int, int)> voisins = new List<(int, int)>();
+
+            for (int k = 0; k < letterIndices0.Count; k++)
+            {
+                List<(int,int)> voisinCoords = Voisin(mot[i].ToString(), letterIndices0[k], letterIndices1[k]);
+                voisins.AddRange(voisinCoords);
+            }
+
+            if (voisins.Count > 0)
+            {
+                letterIndices0.Clear();
+                letterIndices1.Clear();
+
+                foreach ((int,int) coord in voisins)
                 {
-                    if (mot[0].ToString() == this._plateau[this._plateau.GetLength(0) - 1, j])
-                    {
-                        letterIndex1 = j;
-                        letterIndex0 = this._plateau.GetLength(0) - 1;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                voisin = Voisin(mot[i].ToString(), letterIndex0, letterIndex1);
-                if (!voisin.Item1)
-                {
-                    result = false;
+                    letterIndices0.Add(coord.Item1);
+                    letterIndices1.Add(coord.Item2);
+                    coordMot.Add((coord.Item1, coord.Item2));
                 }
             }
-        } while (voisin.Item1);
-
+            else
+            {
+                coordMot.Clear();
+                result = false;
+                break;
+            }
+        }
+        
+        MarkPass(coordMot);
         return result;
+    }
+
+    private void MarkPass(List<(int, int)> coordMot)
+    {
+        foreach ((int,int) coords in coordMot)
+        {
+            this._plateau[coords.Item1, coords.Item2] = " ";
+        }
     }
 }
