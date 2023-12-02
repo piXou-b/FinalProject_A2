@@ -14,10 +14,14 @@
 // string str = "SE";
 // Console.WriteLine(dico.RechDicoRecursif(str.ToUpper(), 0, dico.Dico.Count-1));
 
-// Console.WriteLine();
-// Plateau plateau = new Plateau();
-// Console.WriteLine(plateau.toString());
-// plateau.ToFile("files/Saved_Plateau");
+Console.WriteLine();
+Plateau plateau = new Plateau();
+Console.WriteLine(plateau.toString());
+DateTime now = DateTime.Now;
+string uniqueId = now.ToString("HHmmss");
+string fileName = "Saved_Plateau_" + uniqueId;
+plateau.ToFile("files/" + fileName);
+
 Plateau plateau2 = new Plateau("files/Test1.csv");
 Console.WriteLine(plateau2.toString());
 Console.WriteLine("Entrez un mot");
