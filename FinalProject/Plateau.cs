@@ -3,19 +3,32 @@ using System;
 
 public class Plateau
 {
+    /// <summary>
+    /// Attribut
+    /// </summary>
     private string[,] _plateau;
 
+    /// <summary>
+    /// Constructeur du plateau aléatoire
+    /// </summary>
     public Plateau()
     {
         this._plateau = new string[8, 8];
         SetRndPlateau();
     }
+    /// <summary>
+    /// Constructeur du plateau à partir d'un fichier
+    /// </summary>
+    /// <param name="filename"></param>
     public Plateau(string filename)
     {
         this._plateau = new string[8, 8];
         ToRead(filename);
     }
-
+    
+    /// <summary>
+    /// Créer un plateau aléatoire
+    /// </summary>
     public void SetRndPlateau()
     {
         try
@@ -79,7 +92,11 @@ public class Plateau
             Console.Write("");
         }
     }
-
+    
+    /// <summary>
+    /// Créer un plateau a partir d'un fichier
+    /// </summary>
+    /// <param name="filename"></param>
     public void ToRead(string filename)
     {
         try
@@ -115,6 +132,10 @@ public class Plateau
         }
     }
 
+    /// <summary>
+    /// Description du plateau
+    /// </summary>
+    /// <returns>Chaine de caratère</returns>
     public string toString()
     {
         if (this._plateau.Length == 0)
@@ -144,11 +165,15 @@ public class Plateau
         return result;
     }
 
+    /// <summary>
+    /// Sauvegarde l’instance du plateau dans un fichier
+    /// </summary>
+    /// <param name="filename"></param>
     public void ToFile(string filename)
     {
         try
         {
-            StreamWriter sw = new StreamWriter(filename, false);//voir si il faut mettre true ou false(creer un nouveau fichier a chaque fois avec un indice unique clocksystem)
+            StreamWriter sw = new StreamWriter(filename, false);
             for (int i = 0; i < this._plateau.GetLength(0); i++)
             {
                 for (int j = 0; j < this._plateau.GetLength(1); j++)
@@ -185,6 +210,13 @@ public class Plateau
         }
     }
 
+    /// <summary>
+    /// Determine si une lettre du mot a des voisins correspondant à la prochaine lettre du mot
+    /// </summary>
+    /// <param name="letter"></param>
+    /// <param name="coorI"></param>
+    /// <param name="coorJ"></param>
+    /// <returns>List de coordonées indiquant tout les voisins possibles</returns>
     private List<(int, int)> Voisin(string letter, int coorI, int coorJ)
     {
         letter = letter.ToUpper();
@@ -218,6 +250,11 @@ public class Plateau
         return validCoords;
     }
     
+    /// <summary>
+    /// Teste si le mot passé en paramètre est un mot éligible sur le plateau
+    /// </summary>
+    /// <param name="mot"></param>
+    /// <returns>Booleen</returns>
     public bool Recherche_Mot(string mot)
     {
         mot = mot.ToUpper();
@@ -241,6 +278,13 @@ public class Plateau
         return false;
     }
 
+    /// <summary>
+    /// Test si chaque lettre du mot a des vosins et ajoute leurs positions dans une list passer en paramètre
+    /// </summary>
+    /// <param name="coordMot"></param>
+    /// <param name="mot"></param>
+    /// <param name="indexLetterMot"></param>
+    /// <returns>Booleen</returns>
     private bool TrouverCoordMot(List<(int, int)> coordMot, string mot, int indexLetterMot)
     {
         mot  = mot.ToUpper();
@@ -267,6 +311,10 @@ public class Plateau
         return false;
     }
 
+    /// <summary>
+    /// Marque le mot trouvé en remplaçant les lettres par des espaces
+    /// </summary>
+    /// <param name="coordMot"></param>
     private void MarkPass(List<(int, int)> coordMot)
     {
         foreach (var (x, y) in coordMot)
@@ -275,6 +323,9 @@ public class Plateau
         }
     }
 
+    /// <summary>
+    /// Met à jour le tableau en fonction du mot au préalable trouvé
+    /// </summary>
     public void MajPlateau()
     {
         for (int i = 0; i < this._plateau.GetLength(0); i++)
