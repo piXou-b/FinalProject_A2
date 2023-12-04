@@ -22,7 +22,7 @@ string uniqueId = now.ToString("HHmmss");
 string fileName = "Saved_Plateau_" + uniqueId;
 plateau.ToFile("files/" + fileName);
 
-Plateau plateau2 = new Plateau("files/Test1.csv");
+Plateau plateau2 = new Plateau("files/Test1.csv");//il faut que je vois ou mettre mon fichier dans mon archi pour qu'il se s'inchro avec git
 Console.WriteLine(plateau2.toString());
 Console.WriteLine("Entrez un mot");
 string mot = Console.ReadLine();
