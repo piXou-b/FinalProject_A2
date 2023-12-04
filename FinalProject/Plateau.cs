@@ -216,68 +216,62 @@ public class Plateau
 
         return validCoords;
     }
-
-    public bool Recherche_Mot(string mot)//demander au prof de complexité de l'aide car la blocage
+    
+    public bool Recherche_Mot(string mot)
     {
-        //en gros la fonction va sauvegarder les coord des voisins ok et ensuite va verifier ceux d'apres et supprimer ceux qui n'ont pas correspondu => les list sont vide ca veux dire que le mot n'a plus de voisins donc c'est faux
-        List<int> letterIndices0 = new List<int>();
-        List<int> letterIndices1 = new List<int>();
-        List<(int, int)> coordMot = new List<(int, int)>();
-        bool result = true;
-        
-        for (int j = 0; j < this._plateau.GetLength(1); j++)
+        // Recherche la première lettre dans le plateau.
+        for (int x = 0; x < this._plateau.GetLength(0); x++)
         {
-            if (mot[0].ToString() == this._plateau[this._plateau.GetLength(0) - 1, j])
+            for (int y = 0; y < this._plateau.GetLength(1); y++)
             {
-                letterIndices1.Add(j);
-                letterIndices0.Add(this._plateau.GetLength(0) - 1);
-                coordMot.Add((this._plateau.GetLength(0) - 1,j));
-            }
-        }
-        if (letterIndices0.Count == 0)
-        {
-            return false;
-        }
-        
-        for (int i = 1; i < mot.Length; i++)
-        {
-            List<(int, int)> voisins = new List<(int, int)>();
-
-            for (int k = 0; k < letterIndices0.Count; k++)
-            {
-                List<(int,int)> voisinCoords = Voisin(mot[i].ToString(), letterIndices0[k], letterIndices1[k]);
-                voisins.AddRange(voisinCoords);
-            }
-
-            if (voisins.Count > 0)
-            {
-                letterIndices0.Clear();
-                letterIndices1.Clear();
-
-                foreach ((int,int) coord in voisins)
+                if (this._plateau[x, y].Equals(mot[0].ToString(), StringComparison.OrdinalIgnoreCase))
                 {
-                    letterIndices0.Add(coord.Item1);
-                    letterIndices1.Add(coord.Item2);
-                    coordMot.Add((coord.Item1, coord.Item2));
+                    List<(int, int)> coordMot = new List<(int, int)> { (x, y) };
+                    
+                    if (TrouverCoordMot(coordMot, mot, 1))
+                    {
+                        MarkPass(coordMot);
+                        return true;
+                    }
                 }
             }
-            else
+        }
+
+        return false;
+    }
+
+    private bool TrouverCoordMot(List<(int, int)> coordMot, string mot, int indexLetterMot)
+    {
+        if (indexLetterMot >= mot.Length)
+        {
+            return true;
+        }
+
+        (int x, int y) dernierCoord = coordMot.Last();
+    
+        // Cherche des voisins valides autour de la dernière lettre trouvée.
+        foreach ((int,int) voisin in Voisin(mot[indexLetterMot].ToString(), dernierCoord.x, dernierCoord.y))
+        {
+            if (!coordMot.Contains(voisin))
             {
-                coordMot.Clear();
-                result = false;
-                break;
+                coordMot.Add(voisin);
+                if (TrouverCoordMot(coordMot, mot, indexLetterMot + 1))
+                {
+                    return true;
+                }
+                coordMot.Remove(voisin);
             }
         }
-        
-        MarkPass(coordMot);
-        return result;
+
+        return false;
     }
 
     private void MarkPass(List<(int, int)> coordMot)
     {
-        foreach ((int,int) coords in coordMot)
+        foreach (var (x, y) in coordMot)
         {
-            this._plateau[coords.Item1, coords.Item2] = " ";
+            this._plateau[x, y] = " ";
         }
     }
+
 }
