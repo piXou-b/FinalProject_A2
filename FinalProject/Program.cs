@@ -26,5 +26,7 @@ Plateau plateau2 = new Plateau("files/Test1.csv");//il faut que je vois ou mettr
 Console.WriteLine(plateau2.toString());
 Console.WriteLine("Entrez un mot");
 string mot = Console.ReadLine();
-Console.WriteLine(plateau2.Recherche_Mot(mot.ToUpper()));
+plateau2.Recherche_Mot(mot);
+Console.WriteLine(plateau2.toString());
+plateau2.MajPlateau();
 Console.WriteLine(plateau2.toString());

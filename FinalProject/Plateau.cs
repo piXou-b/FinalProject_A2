@@ -54,7 +54,7 @@ public class Plateau
                         
                         if (occLatente[randomLetter - 'A'] < occ[randomLetter - 'A'])
                         {
-                            this._plateau[x, j] = randomLetter.ToString();
+                            this._plateau[x, j] = (randomLetter.ToString()).ToUpper();
                             occLatente[randomLetter - 'A']++;
                             break;
                         }
@@ -185,8 +185,9 @@ public class Plateau
         }
     }
 
-    public List<(int, int)> Voisin(string letter, int coorI, int coorJ)
+    private List<(int, int)> Voisin(string letter, int coorI, int coorJ)
     {
+        letter = letter.ToUpper();
         List<(int, int)> validCoords = new List<(int, int)>();
         
         if (coorJ + 1 < this._plateau.GetLength(1) && letter == this._plateau[coorI, coorJ + 1])
@@ -219,7 +220,7 @@ public class Plateau
     
     public bool Recherche_Mot(string mot)
     {
-        // Recherche la première lettre dans le plateau.
+        mot = mot.ToUpper();
         for (int x = 0; x < this._plateau.GetLength(0); x++)
         {
             for (int y = 0; y < this._plateau.GetLength(1); y++)
@@ -242,14 +243,14 @@ public class Plateau
 
     private bool TrouverCoordMot(List<(int, int)> coordMot, string mot, int indexLetterMot)
     {
+        mot  = mot.ToUpper();
         if (indexLetterMot >= mot.Length)
         {
             return true;
         }
 
         (int x, int y) dernierCoord = coordMot.Last();
-    
-        // Cherche des voisins valides autour de la dernière lettre trouvée.
+        
         foreach ((int,int) voisin in Voisin(mot[indexLetterMot].ToString(), dernierCoord.x, dernierCoord.y))
         {
             if (!coordMot.Contains(voisin))
@@ -274,4 +275,23 @@ public class Plateau
         }
     }
 
+    public void MajPlateau()
+    {
+        for (int i = 0; i < this._plateau.GetLength(0); i++)
+        {
+            for (int j = 0; j < this._plateau.GetLength(1); j++)
+            {
+                if (this._plateau[i, j] == " ")
+                {
+                    for (int x = i; x > 0; x--)
+                    {
+                        
+                        this._plateau[x, j] = this._plateau[x-1, j];
+                    }
+
+                    this._plateau[0, j] = " ";
+                }
+            }
+        }
+    }
 }
