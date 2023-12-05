@@ -11,10 +11,10 @@ public class Dictionnaire
     /// <summary>
     /// Constructeur
     /// </summary>
-    public Dictionnaire()
+    public Dictionnaire(string filename)
     {
         this._dictionnaire = new List<string>();
-        RemplirDico(this._dictionnaire);
+        RemplirDico(this._dictionnaire, filename);
         QuickSort(this._dictionnaire, 0, _dictionnaire.Count-1);
     }
     
@@ -27,12 +27,12 @@ public class Dictionnaire
     /// Remplir la list donner en paramètre par les mots du fichier Mots_Français 
     /// </summary>
     /// <param name="list"></param>
-    void RemplirDico(List<string> list)
+    void RemplirDico(List<string> list, string filename)
     {
         string line;
         try
         {
-            StreamReader dico = new StreamReader("files/Mots_Français.txt");
+            StreamReader dico = new StreamReader(filename);
             while ((line = dico.ReadLine()) != null)
             {
                 string[] words = line.Split(' ');

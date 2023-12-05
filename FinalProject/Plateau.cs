@@ -39,7 +39,9 @@ public class Plateau
             
             string letter;
             int i = 0;
-            StreamReader plateau = new StreamReader("files/Lettre.txt");
+            
+            string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
+            StreamReader plateau = new StreamReader(cheminFichier);
             while ((letter = plateau.ReadLine()) != null)
             {
                 string[] parts = letter.Split(',');

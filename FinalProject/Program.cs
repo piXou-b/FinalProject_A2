@@ -8,11 +8,12 @@
 // Console.WriteLine(joueur.Contient(mot));
 // Console.WriteLine(joueur.toString());
 //
-// Console.WriteLine();
-// Dictionnaire dico = new Dictionnaire();
-// Console.WriteLine(dico.toString());
-// string str = "SE";
-// Console.WriteLine(dico.RechDicoRecursif(str.ToUpper(), 0, dico.Dico.Count-1));
+Console.WriteLine();
+string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Mots_Français.txt");
+Dictionnaire dico = new Dictionnaire(cheminFichier);
+Console.WriteLine(dico.toString());
+string str = "SE";
+Console.WriteLine(dico.RechDicoRecursif(str.ToUpper(), 0, dico.Dico.Count-1));
 
 // Console.WriteLine();
 // Plateau plateau = new Plateau();
