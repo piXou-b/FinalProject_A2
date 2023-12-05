@@ -317,9 +317,9 @@ public class Plateau
     /// <param name="coordMot"></param>
     private void MarkPass(List<(int, int)> coordMot)
     {
-        foreach (var (x, y) in coordMot)
+        foreach ((int, int) pos in coordMot)
         {
-            this._plateau[x, y] = " ";
+            this._plateau[pos.Item1, pos.Item2] = " ";
         }
     }
 
