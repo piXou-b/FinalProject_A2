@@ -34,7 +34,7 @@ Plateau plateau2 = new Plateau("files/Test1.csv");
 
 Joueur joueur1 = new Joueur("Dorian");
 Joueur joueur2 = new Joueur("Benjamin");
-Dictionnaire dico = new Dictionnaire();
+//Dictionnaire dico1 = new Dictionnaire(cheminFichier);
 TimeSpan gametime = new TimeSpan();
 
 ConsoleKeyInfo cki;
