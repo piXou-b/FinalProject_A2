@@ -14,15 +14,15 @@
 // string str = "SE";
 // Console.WriteLine(dico.RechDicoRecursif(str.ToUpper(), 0, dico.Dico.Count-1));
 
-Console.WriteLine();
-Plateau plateau = new Plateau();
-Console.WriteLine(plateau.toString());
-DateTime now = DateTime.Now;
-string uniqueId = now.ToString("HHmmss");
-string fileName = "Saved_Plateau_" + uniqueId;
-plateau.ToFile("files/" + fileName);
+// Console.WriteLine();
+// Plateau plateau = new Plateau();
+// Console.WriteLine(plateau.toString());
+// DateTime now = DateTime.Now;
+// string uniqueId = now.ToString("HHmmss");
+// string fileName = "Saved_Plateau_" + uniqueId;
+// plateau.ToFile("files/" + fileName);
 
-Plateau plateau2 = new Plateau("files/Test1.csv");//il faut que je vois ou mettre mon fichier dans mon archi pour qu'il se s'inchro avec git
+Plateau plateau2 = new Plateau("files/Test1.csv");
 Console.WriteLine(plateau2.toString());
 Console.WriteLine("Entrez un mot");
 string mot = Console.ReadLine();
