@@ -258,19 +258,16 @@ public class Plateau
     public bool Recherche_Mot(string mot)
     {
         mot = mot.ToUpper();
-        for (int x = 0; x < this._plateau.GetLength(0); x++)
+        for (int y = 0; y < this._plateau.GetLength(1); y++)
         {
-            for (int y = 0; y < this._plateau.GetLength(1); y++)
+            if (this._plateau[this._plateau.GetLength(0)-1, y].Equals(mot[0].ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                if (this._plateau[x, y].Equals(mot[0].ToString(), StringComparison.OrdinalIgnoreCase))
+                List<(int, int)> coordMot = new List<(int, int)> { (this._plateau.GetLength(0)-1, y) };
+                
+                if (TrouverCoordMot(coordMot, mot, 1))
                 {
-                    List<(int, int)> coordMot = new List<(int, int)> { (x, y) };
-                    
-                    if (TrouverCoordMot(coordMot, mot, 1))
-                    {
-                        MarkPass(coordMot);
-                        return true;
-                    }
+                    MarkPass(coordMot);
+                    return true;
                 }
             }
         }
