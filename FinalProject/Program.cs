@@ -7,7 +7,8 @@ Joueur joueur2 = new Joueur("Benjamin");
 string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Mots_Français.txt");
 Dictionnaire dico = new Dictionnaire(cheminFichier);
 
-Plateau plateau2 = new Plateau("files/Test1.csv");
+string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
+Plateau plateau2 = new Plateau(cheminFichierPlateau);
 
 TimeSpan gametime = new TimeSpan();
 
@@ -19,12 +20,8 @@ do
     Console.Clear();
     Console.WriteLine("Choisissez une durée de partie :");
     Console.WriteLine("1. 2 minutes");
-    Console.WriteLine("2. 2 minutes 30 secondes");
-    Console.WriteLine("3. 3 minutes");
-    Console.WriteLine("4. 3 minutes 30 secondes");
-    Console.WriteLine("5. 4 minutes");
-    Console.WriteLine("6. 4 minutes 30 secondes");
-    Console.WriteLine("7. 5 minutes");
+    Console.WriteLine("2. 3 minutes");
+    Console.WriteLine("3. 4 minutes");
     cki = Console.ReadKey(true);
 
     switch (cki.Key)
@@ -34,33 +31,19 @@ do
         case ConsoleKey.D1:
             jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(120.0));
             Console.WriteLine("1");
+            Console.WriteLine(jeu.Plateau.toString());
+            Console.ReadKey();
             break;
         case ConsoleKey.D2:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(150.0));
+            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(180.0));
             Console.WriteLine("2");
+            Console.ReadKey();
             break;
         case ConsoleKey.D3:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(180.0));
-            Console.WriteLine("3");
-            break;
-        case ConsoleKey.D4:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(210.0));
-            Console.WriteLine("4");
-            break;
-        case ConsoleKey.D5:
             jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(240.0));
-            Console.WriteLine("5");
+            Console.WriteLine("3");
+            Console.ReadKey();
             break;
-        case ConsoleKey.D6:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(270.0));
-            Console.WriteLine("6");
-            break;
-        case ConsoleKey.D7:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(300.0));
-            Console.WriteLine("7");
-            break;
-        
-            
         default:
             Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
             break;
