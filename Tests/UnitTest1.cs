@@ -24,4 +24,13 @@ public class Tests
         bool contain = dico.RechDicoRecursif(str.ToUpper(), 0, dico.Dico.Count-1);
         Assert.That(contain, Is.EqualTo(true));
     }
+
+    [Test]
+    public void RechercheMotPlateau()
+    {
+        string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
+        Plateau plateau = new Plateau(cheminFichier);
+        bool mot = plateau.Recherche_Mot("maison");
+        Assert.That(mot, Is.EqualTo(true));
+    }
 }
