@@ -16,5 +16,28 @@ public class Jeu
         this._joueur2 = joueur2;
         this._gametime = gametime;
     }
+    public Dictionnaire Dico
+    {
+        get { return this._dico; }
+    }
+
+    public Plateau Plateau
+    {
+        get { return this._plateau; }
+    }
+
+    public Joueur Joueur1
+    {
+        get { return this._joueur1; }
+    }
+    public Joueur Joueur2
+    {
+        get { return this._joueur2; }
+    }
+
+    public TimeSpan Gametime
+    {
+        get { return this._gametime; }
+    }
     
 }
