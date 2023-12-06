@@ -46,5 +46,19 @@ public class Jeu
         Console.WriteLine("Temps écoulé ! Partie fini");
         
     }
-    
+
+    void Main(string args)
+    {
+        Console.WriteLine(_plateau.toString());
+        Console.WriteLine("Choisissez un mot");
+        string mot = Console.ReadLine();
+        bool RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+        bool RechPlat = _plateau.Recherche_Mot(mot);
+        if (RechDico && RechPlat)
+        {
+            //Calcul du score et ajoute mot à la liste de mots du joueur
+            _plateau.MajPlateau();
+            Console.WriteLine(_plateau.toString());
+        }
+    }
 }
