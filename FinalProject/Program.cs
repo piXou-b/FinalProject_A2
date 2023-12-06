@@ -30,19 +30,20 @@ do
 
         case ConsoleKey.D1:
             jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            Timer timer = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
             jeu.Gametime = timer;
+            jeu.Main();
             Console.ReadKey();
             break;
         case ConsoleKey.D2:
             jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer2 = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            Timer timer2 = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
             jeu.Gametime = timer2;
             Console.ReadKey();
             break;
         case ConsoleKey.D3:
             jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer3 = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            Timer timer3 = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
             jeu.Gametime = timer3;
             Console.ReadKey();
             break;
