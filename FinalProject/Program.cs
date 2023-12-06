@@ -29,19 +29,21 @@ do
         
 
         case ConsoleKey.D1:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(120.0));
-            Console.WriteLine("1");
-            Console.WriteLine(jeu.Plateau.toString());
+            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
+            Timer timer = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            jeu.Gametime = timer;
             Console.ReadKey();
             break;
         case ConsoleKey.D2:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(180.0));
-            Console.WriteLine("2");
+            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
+            Timer timer2 = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            jeu.Gametime = timer2;
             Console.ReadKey();
             break;
         case ConsoleKey.D3:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, TimeSpan.FromSeconds(240.0));
-            Console.WriteLine("3");
+            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
+            Timer timer3 = new Timer(jeu.EndGame, null, TimeSpan.Zero, TimeSpan.FromMinutes(2));
+            jeu.Gametime = timer3;
             Console.ReadKey();
             break;
         default:

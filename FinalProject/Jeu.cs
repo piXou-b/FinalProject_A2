@@ -6,9 +6,9 @@ public class Jeu
     private Plateau _plateau;
     private Joueur _joueur1;
     private Joueur _joueur2;
-    private TimeSpan _gametime;
+    private Timer _gametime;
 
-    public Jeu(Dictionnaire dico, Plateau plateau, Joueur joueur1, Joueur joueur2, TimeSpan gametime)
+    public Jeu(Dictionnaire dico, Plateau plateau, Joueur joueur1, Joueur joueur2, Timer gametime)
     {
         this._dico = dico;
         this._plateau = plateau;
@@ -35,9 +35,16 @@ public class Jeu
         get { return this._joueur2; }
     }
 
-    public TimeSpan Gametime
+    public Timer Gametime
     {
         get { return this._gametime; }
+        set { this._gametime = value; }
+    }
+
+    public void EndGame(object state)
+    {
+        Console.WriteLine("Temps écoulé ! Partie fini");
+        
     }
     
 }
