@@ -47,7 +47,7 @@ public class Jeu
         
     }
 
-    void Main(string args)
+    public void Main(string args)
     {
         Console.WriteLine(_plateau.toString());
         Console.WriteLine("Choisissez un mot");
@@ -59,6 +59,46 @@ public class Jeu
             //Calcul du score et ajoute mot à la liste de mots du joueur
             _plateau.MajPlateau();
             Console.WriteLine(_plateau.toString());
+        }
+    }
+
+    public void CalculPointMot(string mot, Joueur joueur)
+    {
+        try
+        {
+            int point = joueur.Score;
+            string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
+            StreamReader plateau = new StreamReader(cheminFichier);
+            string value;
+            
+            while ((value = plateau.ReadLine()) != null)
+            {
+                string[] parts = value.Split(',');
+                foreach (char letter in mot)
+                {
+                    if (parts[0] == letter.ToString())
+                    {
+                        point += Convert.ToInt16(parts[2]);
+                    }
+                }
+            }
+            plateau.Close();
+        }
+        catch(FileNotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(IOException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.Write("");
         }
     }
 }
