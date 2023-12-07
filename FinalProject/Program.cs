@@ -9,11 +9,9 @@ Dictionnaire dico = new Dictionnaire(cheminFichier);
 
 string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
 Plateau plateau2 = new Plateau(cheminFichierPlateau);
-
-TimeSpan gametime = new TimeSpan();
+Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
 
 ConsoleKeyInfo cki;
-Jeu jeu = null;
 
 do
 {
@@ -26,25 +24,22 @@ do
 
     switch (cki.Key)
     {
-        
-
         case ConsoleKey.D1:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
-            jeu.Gametime = timer;
+            joueur1.TempsRestant = 60;
+            joueur2.TempsRestant = 60;
             jeu.Main();
             Console.ReadKey();
             break;
         case ConsoleKey.D2:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer2 = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
-            jeu.Gametime = timer2;
+            joueur1.TempsRestant = 90;
+            joueur2.TempsRestant = 90;
+            jeu.Main();
             Console.ReadKey();
             break;
         case ConsoleKey.D3:
-            jeu = new Jeu(dico, plateau2, joueur1, joueur2, null);
-            Timer timer3 = new Timer(jeu.EndGame, null, TimeSpan.FromMinutes(2), Timeout.InfiniteTimeSpan);
-            jeu.Gametime = timer3;
+            joueur1.TempsRestant = 120;
+            joueur2.TempsRestant = 120;
+            jeu.Main();
             Console.ReadKey();
             break;
         default:
@@ -53,8 +48,3 @@ do
     }
 
 } while (cki.Key != ConsoleKey.Escape);
-
-if (jeu != null)
-{
-    Console.WriteLine(jeu);
-}

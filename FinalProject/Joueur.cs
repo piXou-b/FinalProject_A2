@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace FinalProject;
 
 public class Joueur
@@ -6,9 +8,11 @@ public class Joueur
     /// Attributs
     /// </summary>
     private string _name;
-
     private List<string> _words;
     private int _score;
+    private Timer _timer;
+    private bool _aJoue;
+    private int _tempsRestant;
 
     /// <summary>
     /// Constructeur
@@ -19,6 +23,9 @@ public class Joueur
         this._name = name;
         this._words = new List<string>();
         this._score = 0;
+        this._timer = new Timer(UpdateTime,null, 0, 1000);
+        this._aJoue = true;
+        this._tempsRestant = int.MinValue;
     }
 
     /// <summary>
@@ -27,6 +34,31 @@ public class Joueur
     public string Name { get => _name; }
     public List<string> Words { get => _words; }
     public int Score { get => _score; }
+
+    public Timer Timer
+    {
+        get { return this._timer; }
+    }
+
+    public int TempsRestant
+    {
+        get { return this._tempsRestant; }
+        set { this._tempsRestant = value; }
+    }
+
+    public bool aJoue
+    {
+        get { return this._aJoue; }
+        set { this._aJoue = value; }
+    }
+
+    public void UpdateTime(object state)
+    {
+        if (!_aJoue)
+        {
+            _tempsRestant--;
+        }
+    }
 
     /// <summary>
     /// Ajoute un mot trouvé la list de mot courant correspondent au joueur
@@ -46,7 +78,7 @@ public class Joueur
     /// <returns>Retourne une chaîne de caractères qui décrit un joueur</returns>
     public string toString()
     {
-        return $"Joueur: {Name}\nScore: {Score}\nMots trouvés: {string.Join(", ", Words)}";
+        return $"Joueur: {_name}\nScore: {_score}\nMots trouvés: {string.Join(", ", _words)}";
     }
 
     /// <summary>
