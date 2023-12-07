@@ -13,38 +13,35 @@ Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
 
 ConsoleKeyInfo cki;
 
-do
+Console.Clear();
+Console.WriteLine("Choisissez une durée de partie :");
+Console.WriteLine("1. 1 minute chacun");
+Console.WriteLine("2. 2 minute chacun");
+Console.WriteLine("3. 3 minute chacun");
+cki = Console.ReadKey(true);
+
+switch (cki.Key)
 {
-    Console.Clear();
-    Console.WriteLine("Choisissez une durée de partie :");
-    Console.WriteLine("1. 2 minutes");
-    Console.WriteLine("2. 3 minutes");
-    Console.WriteLine("3. 4 minutes");
-    cki = Console.ReadKey(true);
-
-    switch (cki.Key)
-    {
-        case ConsoleKey.D1:
-            joueur1.TempsRestant = 10;
-            joueur2.TempsRestant = 10;
-            jeu.Main();
-            Console.ReadKey();
-            break;
-        case ConsoleKey.D2:
-            joueur1.TempsRestant = 90;
-            joueur2.TempsRestant = 90;
-            jeu.Main();
-            Console.ReadKey();
-            break;
-        case ConsoleKey.D3:
-            joueur1.TempsRestant = 120;
-            joueur2.TempsRestant = 120;
-            jeu.Main();
-            Console.ReadKey();
-            break;
-        default:
-            Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
-            break;
-    }
-
-} while (cki.Key != ConsoleKey.Escape);
+    case ConsoleKey.D1:
+        joueur1.TempsRestant = 60;
+        joueur2.TempsRestant = 60;
+        jeu.Main();
+        Console.ReadKey();
+        break;
+    case ConsoleKey.D2:
+        joueur1.TempsRestant = 90;
+        joueur2.TempsRestant = 90;
+        jeu.Main();
+        Console.ReadKey();
+        break;
+    case ConsoleKey.D3:
+        joueur1.TempsRestant = 120;
+        joueur2.TempsRestant = 120;
+        jeu.Main();
+        Console.ReadKey();
+        break;
+    default:
+        Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
+        break;
+}
+    
