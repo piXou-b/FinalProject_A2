@@ -33,4 +33,21 @@ public class Tests
         bool mot = plateau.Recherche_Mot("maison");
         Assert.That(mot, Is.EqualTo(true));
     }
+
+    [Test]
+    public void IsEmptyPlateau()
+    {
+        string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
+        Plateau plateau = new Plateau(cheminFichier);
+        for (int i = 0; i < plateau.Plato.GetLength(0); i++)
+        {
+            for (int j = 0; j < plateau.Plato.GetLength(1); j++)
+            {
+                plateau.Plato[i, j] = " ";
+            }
+        }
+
+        bool empty = plateau.IsEmpty();
+        Assert.That(empty, Is.EqualTo(true));
+    }
 }

@@ -26,6 +26,8 @@ public class Plateau
         ToRead(filename);
     }
     
+    public string[,] Plato { get => this._plateau; }
+    
     /// <summary>
     /// Créer un plateau aléatoire
     /// </summary>
@@ -343,5 +345,21 @@ public class Plateau
                 }
             }
         }
+    }
+
+    public bool IsEmpty()
+    {
+        for (int i = 0; i < this._plateau.GetLength(0); i++)
+        {
+            for (int j = 0; j < this._plateau.GetLength(1); j++)
+            {
+                if (this._plateau[i, j] != " ")
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
