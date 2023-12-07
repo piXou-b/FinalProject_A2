@@ -25,8 +25,8 @@ do
     switch (cki.Key)
     {
         case ConsoleKey.D1:
-            joueur1.TempsRestant = 60;
-            joueur2.TempsRestant = 60;
+            joueur1.TempsRestant = 10;
+            joueur2.TempsRestant = 10;
             jeu.Main();
             Console.ReadKey();
             break;
