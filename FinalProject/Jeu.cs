@@ -42,16 +42,33 @@ public class Jeu
 
     public void Joue(Joueur joueur)
     {
-        Console.WriteLine("Au tour de " + joueur.Name);
-        Console.WriteLine("Temps restant : " + joueur.TempsRestant);
-        joueur.aJoue = false;
-        Console.WriteLine(_plateau.toString());
-        Console.WriteLine("Choisissez un mot");
-        string mot = Console.ReadLine();
-        bool RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
-        bool RechPlat = _plateau.Recherche_Mot(mot);
-        if (RechDico && RechPlat)
+        while (true)
         {
+            _joueurActuel = joueur;
+            Console.WriteLine("Au tour de " + joueur.Name);
+            Console.WriteLine("Temps restant : " + joueur.TempsRestant);
+            joueur.aJoue = false;
+            Console.WriteLine(_plateau.toString());
+            string mot = null;
+            bool RechDico = false;
+            bool RechPlat = false;
+            Timer verifTime = new Timer(VerifTime,null, 0, 1000);
+            if (_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0)
+            {
+                verifTime.Change(Timeout.Infinite, Timeout.Infinite);
+                finPartie();
+                break;
+            }
+            while (!RechPlat)
+            {
+                while (!RechDico)
+                {
+                    Console.WriteLine("Choisissez un mot");
+                    mot = Console.ReadLine();
+                    RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+                }
+                RechPlat = _plateau.Recherche_Mot(mot);
+            }
             int point = CalculPointMot(mot, joueur);
             joueur.Add_Score(point);
             joueur.Add_Mot(mot);
@@ -60,42 +77,37 @@ public class Jeu
             joueur.aJoue = true;
             if (joueur == _joueur1)
             {
-                if (_joueur2.TempsRestant > 0)
-                {
-                    Joue(_joueur2);
-                }
-                else if (_joueur1.TempsRestant > 0)
-                {
-                    Joue(_joueur1);
-                }
-                else
-                {
-                    finPartie();
-                }
+                Joue(_joueur2);
             }
             else
             {
-                if (_joueur1.TempsRestant > 0)
-                {
-                    Joue(_joueur1);
-                }
-                else if (_joueur2.TempsRestant > 0)
-                {
-                    Joue(_joueur2);
-                }
-                else
-                {
-                    finPartie();
-                }
+                Joue(_joueur1);
+            }
+        }
+        
+    }
+
+    void VerifTime(object state)
+    {
+        if (_joueurActuel.TempsRestant == 0)
+        {
+            Console.WriteLine("Temps écoulé !");
+            if (_joueurActuel == _joueur1)
+            {
+                Joue(_joueur2);
+            }
+            else
+            {
+                Joue(_joueur1);
             }
         }
     }
 
-    private void finPartie()
+    public void finPartie()
     {
         Console.WriteLine("La partie est finie");
-        _joueur1.toString();
-        _joueur2.toString();
+        Console.WriteLine(_joueur1.toString());
+        Console.WriteLine(_joueur2.toString());
         if (_joueur1.Score > _joueur2.Score)
         {
             Console.WriteLine(_joueur1.Name + "a gagné la partie");

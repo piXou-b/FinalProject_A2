@@ -52,7 +52,7 @@ public class Joueur
         set { this._aJoue = value; }
     }
 
-    public void UpdateTime(object state)
+    private void UpdateTime(object state)
     {
         if (!_aJoue)
         {
