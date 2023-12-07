@@ -362,4 +362,52 @@ public class Plateau
 
         return true;
     }
+
+    public void PersonalizeLetterPoint()
+    {
+        Console.WriteLine("Personnalisation des points par lettre: ");
+        try
+        {
+            string letter;
+            List<string> lines = new List<string>();
+            
+            string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
+            StreamReader ligne = new StreamReader(cheminFichier);
+            while ((letter = ligne.ReadLine()) != null)
+            {
+                string[] parts = letter.Split(';');
+                Console.WriteLine(parts[2] + ": ");
+                string point = Convert.ToString(Console.ReadLine());
+                int numericalPoint;
+                if (int.TryParse(point, out numericalPoint))
+                {
+                    parts[2] = point;
+                }
+                lines.Add(string.Join(";", parts));
+            }
+            ligne.Close();
+
+            StreamWriter sw = new StreamWriter(cheminFichier);
+            foreach (string line in lines)
+            {
+                sw.WriteLine(line);
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(IOException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.Write("");
+        }
+    }
 }

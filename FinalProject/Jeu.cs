@@ -40,6 +40,7 @@ public class Jeu
         Joue(_joueur1);
     }
 
+    //Add method toRead at each iteration
     public void Joue(Joueur joueur)
     {
         while (true)

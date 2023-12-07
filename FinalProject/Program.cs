@@ -1,8 +1,16 @@
 ﻿using FinalProject;
 
-//ajouter une ligne qui informe si l'utilsateur veut modifier ses propres occurneces max de lettres et point par lettres 
-Joueur joueur1 = new Joueur("Dorian");
-Joueur joueur2 = new Joueur("Benjamin");
+//ajouter une ligne qui informe si l'utilsateur veut modifier ses propres occurneces max de lettres et point par lettres
+
+
+Console.WriteLine("Pseudo Joueur1: ");
+string pseudo1 = Convert.ToString(Console.ReadLine());
+Joueur joueur1 = new Joueur(pseudo1);
+
+Console.WriteLine("Pseudo Joueur2: ");
+string pseudo2 = Convert.ToString(Console.ReadLine());
+Joueur joueur2 = new Joueur(pseudo2);
+
 
 string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Mots_Français.txt");
 Dictionnaire dico = new Dictionnaire(cheminFichier);
