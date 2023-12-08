@@ -41,6 +41,7 @@ public class Jeu
     }
 
     //Add method toRead at each iteration
+    //Add also the condition when the plateau is empty
     public void Joue(Joueur joueur)
     {
         while (true)
@@ -54,7 +55,7 @@ public class Jeu
             bool RechDico = false;
             bool RechPlat = false;
             Timer verifTime = new Timer(VerifTime,null, 0, 1000);
-            if (_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0)
+            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty()) //pas sur de l'implémentation du is empty
             {
                 verifTime.Change(Timeout.Infinite, Timeout.Infinite);
                 finPartie();
@@ -108,6 +109,7 @@ public class Jeu
     {
         Console.WriteLine("La partie est finie");
         Console.WriteLine(_joueur1.toString());
+        Console.WriteLine();
         Console.WriteLine(_joueur2.toString());
         if (_joueur1.Score > _joueur2.Score)
         {
@@ -126,6 +128,7 @@ public class Jeu
     private int CalculPointMot(string mot, Joueur joueur)
     {
         int point = 0;
+        mot = mot.ToUpper();
         
         try
         {

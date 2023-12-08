@@ -375,23 +375,19 @@ public class Plateau
             StreamReader ligne = new StreamReader(cheminFichier);
             while ((letter = ligne.ReadLine()) != null)
             {
-                string[] parts = letter.Split(';');
-                Console.WriteLine(parts[2] + ": ");
+                string[] parts = letter.Split(',');
+                Console.Write(parts[0] + ": ");
                 string point = Convert.ToString(Console.ReadLine());
                 int numericalPoint;
                 if (int.TryParse(point, out numericalPoint))
                 {
                     parts[2] = point;
                 }
-                lines.Add(string.Join(";", parts));
+                lines.Add(string.Join(",", parts));
             }
             ligne.Close();
-
-            StreamWriter sw = new StreamWriter(cheminFichier);
-            foreach (string line in lines)
-            {
-                sw.WriteLine(line);
-            }
+            
+            File.WriteAllLines(cheminFichier, lines);
         }
         catch(FileNotFoundException e)
         {

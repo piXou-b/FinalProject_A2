@@ -1,6 +1,7 @@
 ﻿using FinalProject;
+using Spectre.Console;
 
-//ajouter une ligne qui informe si l'utilsateur veut modifier ses propres occurneces max de lettres et point par lettres
+//ajouter une personnalistaion  CLI Tool
 
 
 Console.WriteLine("Pseudo Joueur1: ");
@@ -17,6 +18,8 @@ Dictionnaire dico = new Dictionnaire(cheminFichier);
 
 string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
 Plateau plateau2 = new Plateau(cheminFichierPlateau);
+plateau2.PersonalizeLetterPoint();
+
 Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
 
 ConsoleKeyInfo cki;
