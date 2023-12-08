@@ -1,5 +1,6 @@
 namespace FinalProject;
 using System;
+using Spectre.Console;
 
 public class Plateau
 {
@@ -376,8 +377,7 @@ public class Plateau
             while ((letter = ligne.ReadLine()) != null)
             {
                 string[] parts = letter.Split(',');
-                Console.Write(parts[0] + ": ");
-                string point = Convert.ToString(Console.ReadLine());
+                string point = AnsiConsole.Ask<string>("[blue]" + parts[0] + ": [/]");
                 int numericalPoint;
                 if (int.TryParse(point, out numericalPoint))
                 {

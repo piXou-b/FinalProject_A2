@@ -1,4 +1,5 @@
 ﻿namespace FinalProject;
+using Spectre.Console;
 
 public class Jeu
 {
@@ -111,13 +112,23 @@ public class Jeu
         Console.WriteLine(_joueur1.toString());
         Console.WriteLine();
         Console.WriteLine(_joueur2.toString());
+        Console.WriteLine();
+        
+        AnsiConsole.Write(new BarChart()
+            .Width(60)
+            .Label("[green bold underline]Scores[/]")
+            .CenterLabel()
+            .AddItem("Joueur 1", _joueur1.Score, Color.Red)
+            .AddItem("Joueur 2", _joueur2.Score, Color.Green));
+        Console.WriteLine();
+        
         if (_joueur1.Score > _joueur2.Score)
         {
-            Console.WriteLine(_joueur1.Name + "a gagné la partie");
+            Console.WriteLine(_joueur1.Name + " a gagné la partie");
         }
         else if (_joueur2.Score > _joueur1.Score)
         {
-            Console.WriteLine(_joueur2.Name + "a gagné la partie");
+            Console.WriteLine(_joueur2.Name + " a gagné la partie");
         }
         else
         {

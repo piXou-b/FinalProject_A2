@@ -2,15 +2,31 @@
 using Spectre.Console;
 
 //ajouter une personnalistaion  CLI Tool
+Console.WriteLine();
+var rule = new Rule("[darkslategray2]Projet final A2[/]");
+rule.Centered();
+AnsiConsole.Write(rule);
+Console.WriteLine();
 
 
-Console.WriteLine("Pseudo Joueur1: ");
-string pseudo1 = Convert.ToString(Console.ReadLine());
-Joueur joueur1 = new Joueur(pseudo1);
+AnsiConsole.Status()
+    .Start("Initialization...", ctx => 
+    {
+        Thread.Sleep(1000);   
+        // Update the status and spinner
+        ctx.Status("finished");
+        ctx.Spinner(Spinner.Known.Star);
+        ctx.SpinnerStyle(Style.Parse("green"));
+    });
 
-Console.WriteLine("Pseudo Joueur2: ");
-string pseudo2 = Convert.ToString(Console.ReadLine());
-Joueur joueur2 = new Joueur(pseudo2);
+
+string name = AnsiConsole.Ask<string>("What's your [green]name[/] first player?");
+Joueur joueur1 = new Joueur(name);
+
+string name2 = AnsiConsole.Ask<string>("What's your [green]name[/] second player?");
+Joueur joueur2 = new Joueur(name2);
+
+Console.WriteLine();
 
 
 string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Mots_Français.txt");
@@ -25,11 +41,19 @@ Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
 ConsoleKeyInfo cki;
 
 Console.Clear();
-Console.WriteLine("Choisissez une durée de partie :");
-Console.WriteLine("1. 1 minute chacun");
-Console.WriteLine("2. 2 minute chacun");
-Console.WriteLine("3. 3 minute chacun");
+AnsiConsole.Markup("[red underline]Choisissez une durée de partie :[/]");
+Console.WriteLine();
+var table = new Table();
+table.AddColumn("Option").LeftAligned();
+table.AddColumn("Durée").LeftAligned();
+
+table.AddRow("1", "1 minute chacun");
+table.AddRow("2", "2 minutes chacun");
+table.AddRow("3", "3 minutes chacun");
+AnsiConsole.Write(table);
+
 cki = Console.ReadKey(true);
+Console.WriteLine();
 
 switch (cki.Key)
 {
@@ -53,6 +77,6 @@ switch (cki.Key)
         break;
     default:
         Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
-        break;
+        break;//faire un do while ici pour pas que ca break complet
 }
     
