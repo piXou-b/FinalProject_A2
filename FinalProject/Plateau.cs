@@ -148,7 +148,7 @@ public class Plateau
             return "La matrice est vide.";
         }
 
-        string result = " ________________________" + Environment.NewLine;
+        string result = "________________________" + Environment.NewLine;
         for (int i = 0; i < _plateau.GetLength(0); i++)
         {
             result += "| ";
@@ -165,7 +165,7 @@ public class Plateau
 
             result += "|" + Environment.NewLine;
         }
-        result += " ------------------------";
+        result += "------------------------";
 
         return result;
     }

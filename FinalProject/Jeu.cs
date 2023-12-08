@@ -47,10 +47,16 @@ public class Jeu
         while (true)
         {
             _joueurActuel = joueur;
-            Console.WriteLine("Au tour de " + joueur.Name);
-            Console.WriteLine("Temps restant : " + joueur.TempsRestant);
+            Console.WriteLine();
+            Console.WriteLine();
+            AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
+            AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant + "[/]");
             joueur.aJoue = false;
-            Console.WriteLine(_plateau.toString());
+            
+            Text text = new Text(_plateau.toString());
+            text.Centered();
+            AnsiConsole.Write(text);
+            
             string mot = null;
             bool RechDico = false;
             bool RechPlat = false;
@@ -75,7 +81,6 @@ public class Jeu
             joueur.Add_Score(point);
             joueur.Add_Mot(mot);
             _plateau.MajPlateau();
-            Console.WriteLine(_plateau.toString());
             joueur.aJoue = true;
             if (joueur == _joueur1)
             {

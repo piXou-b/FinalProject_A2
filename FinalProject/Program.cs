@@ -1,7 +1,6 @@
 ﻿using FinalProject;
 using Spectre.Console;
 
-//ajouter une personnalistaion  CLI Tool
 Console.WriteLine();
 var rule = new Rule("[darkslategray2]Projet final A2[/]");
 rule.Centered();
@@ -13,7 +12,6 @@ AnsiConsole.Status()
     .Start("Initialization...", ctx => 
     {
         Thread.Sleep(1000);   
-        // Update the status and spinner
         ctx.Status("finished");
         ctx.Spinner(Spinner.Known.Star);
         ctx.SpinnerStyle(Style.Parse("green"));
@@ -34,6 +32,8 @@ Dictionnaire dico = new Dictionnaire(cheminFichier);
 
 string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
 Plateau plateau2 = new Plateau(cheminFichierPlateau);
+
+//si le mec ne choisi pas de personnaliser il faut garder le premier fichier ?
 plateau2.PersonalizeLetterPoint();
 
 Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
