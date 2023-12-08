@@ -42,7 +42,6 @@ public class Jeu
     }
 
     //Add method toRead at each iteration
-    //Add also the condition when the plateau is empty
     public void Joue(Joueur joueur)
     {
         while (true)
@@ -56,7 +55,7 @@ public class Jeu
             bool RechDico = false;
             bool RechPlat = false;
             Timer verifTime = new Timer(VerifTime,null, 0, 1000);
-            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty()) //pas sur de l'implémentation du is empty
+            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())//deplacer le tableau is empty plutot
             {
                 verifTime.Change(Timeout.Infinite, Timeout.Infinite);
                 finPartie();

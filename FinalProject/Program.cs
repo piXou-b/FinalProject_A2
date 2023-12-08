@@ -20,10 +20,10 @@ AnsiConsole.Status()
     });
 
 
-string name = AnsiConsole.Ask<string>("What's your [green]name[/] first player?");
+string name = AnsiConsole.Ask<string>("What's your [green]name[/], first player?");
 Joueur joueur1 = new Joueur(name);
 
-string name2 = AnsiConsole.Ask<string>("What's your [green]name[/] second player?");
+string name2 = AnsiConsole.Ask<string>("What's your [green]name[/], second player?");
 Joueur joueur2 = new Joueur(name2);
 
 Console.WriteLine();
