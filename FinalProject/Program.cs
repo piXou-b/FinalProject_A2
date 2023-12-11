@@ -33,7 +33,7 @@ Dictionnaire dico = new Dictionnaire(cheminFichier);
 string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
 Plateau plateau2 = new Plateau(cheminFichierPlateau);
 
-//si le mec ne choisi pas de personnaliser il faut garder le premier fichier ?
+//si le mec ne choisi pas de personnaliser il faut garder le premier fichier ? ou alors faire juste les point du scrabble et pas personnaliser
 plateau2.PersonalizeLetterPoint();
 
 Jeu jeu = new Jeu(dico, plateau2, joueur1, joueur2);
@@ -55,28 +55,31 @@ AnsiConsole.Write(table);
 cki = Console.ReadKey(true);
 Console.WriteLine();
 
-switch (cki.Key)
+do
 {
-    case ConsoleKey.D1:
-        joueur1.TempsRestant = 60;
-        joueur2.TempsRestant = 60;
-        jeu.Main();
-        Console.ReadKey();
-        break;
-    case ConsoleKey.D2:
-        joueur1.TempsRestant = 90;
-        joueur2.TempsRestant = 90;
-        jeu.Main();
-        Console.ReadKey();
-        break;
-    case ConsoleKey.D3:
-        joueur1.TempsRestant = 120;
-        joueur2.TempsRestant = 120;
-        jeu.Main();
-        Console.ReadKey();
-        break;
-    default:
-        Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
-        break;//faire un do while ici pour pas que ca break complet
-}
+    switch (cki.Key)
+    {
+        case ConsoleKey.D1:
+            joueur1.TempsRestant = 60;
+            joueur2.TempsRestant = 60;
+            jeu.Main();
+            Console.ReadKey();
+            break;
+        case ConsoleKey.D2:
+            joueur1.TempsRestant = 90;
+            joueur2.TempsRestant = 90;
+            jeu.Main();
+            Console.ReadKey();
+            break;
+        case ConsoleKey.D3:
+            joueur1.TempsRestant = 120;
+            joueur2.TempsRestant = 120;
+            jeu.Main();
+            Console.ReadKey();
+            break;
+        default:
+            Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
+            break;
+    }
+} while (true);
     
