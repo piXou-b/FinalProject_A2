@@ -56,7 +56,10 @@ public class Joueur
     {
         if (!_aJoue)
         {
-            _tempsRestant--;
+            if (_tempsRestant > 0)
+            {
+                _tempsRestant--;
+            }
         }
     }
 

@@ -48,6 +48,7 @@ public class Jeu
         while (true)
         {
             _joueurActuel = joueur;
+            Thread.Sleep(1000);
             Console.WriteLine();
             Console.WriteLine();
             AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
