@@ -41,6 +41,7 @@ public class Jeu
         Joue(_joueur1);
     }
 
+    //Bugs au niveau des temps des joueurs
     //Add method toRead at each iteration
     public void Joue(Joueur joueur)
     {
@@ -61,7 +62,7 @@ public class Jeu
             bool RechDico = false;
             bool RechPlat = false;
             Timer verifTime = new Timer(VerifTime,null, 0, 1000);
-            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())//deplacer le tableau is empty plutot
+            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
             {
                 verifTime.Change(Timeout.Infinite, Timeout.Infinite);
                 finPartie();
@@ -138,6 +139,8 @@ public class Jeu
         {
             Console.WriteLine("Egalité !");
         }
+        
+        Environment.Exit(0);
     }
 
     private int CalculPointMot(string mot, Joueur joueur)
