@@ -62,22 +62,22 @@ do
     {
         case ConsoleKey.D1:
             bonneTouche = true;
-            joueur1.TempsRestant = 60;
-            joueur2.TempsRestant = 60;
+            joueur1.TempsRestant = 10000;
+            joueur2.TempsRestant = 10000;
             jeu.Main();
             Console.ReadKey();
             break;
         case ConsoleKey.D2:
             bonneTouche = true;
-            joueur1.TempsRestant = 90;
-            joueur2.TempsRestant = 90;
+            joueur1.TempsRestant = 90000;
+            joueur2.TempsRestant = 90000;
             jeu.Main();
             Console.ReadKey();
             break;
         case ConsoleKey.D3:
             bonneTouche = true;
-            joueur1.TempsRestant = 120;
-            joueur2.TempsRestant = 120;
+            joueur1.TempsRestant = 120000;
+            joueur2.TempsRestant = 120000;
             jeu.Main();
             Console.ReadKey();
             break;

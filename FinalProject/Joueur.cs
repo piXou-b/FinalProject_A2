@@ -13,6 +13,7 @@ public class Joueur
     private Timer _timer;
     private bool _aJoue;
     private int _tempsRestant;
+    private DateTime _date;
 
     /// <summary>
     /// Constructeur
@@ -23,9 +24,10 @@ public class Joueur
         this._name = name;
         this._words = new List<string>();
         this._score = 0;
-        this._timer = new Timer(UpdateTime,null, 0, 1000);
+        this._timer = new Timer(UpdateTime,null, 0, 250);
         this._aJoue = true;
         this._tempsRestant = int.MinValue;
+        this._date = DateTime.Now;
     }
 
     /// <summary>
@@ -55,9 +57,15 @@ public class Joueur
     private void UpdateTime(object state)
     {
         if (!_aJoue)
-        { 
-            _tempsRestant--;
+        {
+            _tempsRestant -= 250;
         }
+    }
+
+    public DateTime Date
+    {
+        get { return this._date; }
+        set { this._date = value; }
     }
 
     /// <summary>

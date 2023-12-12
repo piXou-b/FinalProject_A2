@@ -43,81 +43,186 @@ public class Jeu
 
     //Bugs au niveau des temps des joueurs
     //Add method toRead at each iteration
-    public void Joue(Joueur joueur)
+    public bool Joue(Joueur joueur)
     {
-        while (true)
+        
+        _joueurActuel = joueur;
+        Timer verifTime = new Timer(VerifTime,null, 0, 250);
+        Thread.Sleep(1000);
+        if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
         {
-            _joueurActuel = joueur;
-            Timer verifTime = new Timer(VerifTime,null, 0, 1000);
-            Thread.Sleep(1000);
-            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
+            verifTime.Change(Timeout.Infinite, Timeout.Infinite);
+            return false;
+        }
+        if (joueur.TempsRestant <= 0)
+        {
+            return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+        AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
+        AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant/1000 + "[/]");
+        joueur.aJoue = false;
+    
+        Text text = new Text(_plateau.toString());
+        text.Centered();
+        AnsiConsole.Write(text);
+    
+        string mot = null;
+        bool RechDico = false;
+        bool RechPlat = false;
+        while (!RechPlat)
+        {
+            while (!RechDico)
             {
-                verifTime.Change(Timeout.Infinite, Timeout.Infinite);
-            }
-            if (joueur.TempsRestant <= 0)
-            {
-                break;
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
-            AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant + "[/]");
-            joueur.aJoue = false;
-        
-            Text text = new Text(_plateau.toString());
-            text.Centered();
-            AnsiConsole.Write(text);
-        
-            string mot = null;
-            bool RechDico = false;
-            bool RechPlat = false;
-            while (!RechPlat)
-            {
-                while (!RechDico)
+                mot = LisMot2();
+                if (mot == null)
                 {
-                    Console.WriteLine("Choisissez un mot");
-                    mot = Console.ReadLine();
-                    RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+                    break; 
                 }
-                RechPlat = _plateau.Recherche_Mot(mot);
-                RechDico = false;
+                RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+                    
             }
-            int point = CalculPointMot(mot, joueur);
-            joueur.Add_Score(point);
-            joueur.Add_Mot(mot);
-            _plateau.MajPlateau();
-            //Add plateau file avec IdUnique
-            joueur.aJoue = true;
-            if (joueur == _joueur1)
+            if (mot == null)
             {
-                Joue(_joueur2);
+                break; 
             }
-            else
+            RechPlat = _plateau.Recherche_Mot(mot);
+            RechDico = false;
+        }
+        if (mot == null)
+        {
+            return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+        }
+        int point = CalculPointMot(mot, joueur);
+        joueur.Add_Score(point);
+        joueur.Add_Mot(mot);
+        _plateau.MajPlateau();
+        //Add plateau file avec IdUnique
+        joueur.aJoue = true;
+        return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+    }
+    // public bool Joue2(Joueur joueur)
+    // {
+    //     _joueurActuel = joueur;
+    //     ConsoleKeyInfo cki;
+    //     _joueurActuel.Date = DateTime.Now;
+    //     _joueurActuel.aJoue = false;
+    //     if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
+    //     {
+    //         finPartie();
+    //         return false;
+    //     }
+    //     if (joueur.TempsRestant <= 0)
+    //     {
+    //         return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+    //     }
+    //     bool RechDico = false;
+    //     bool RechPlat = false;
+    //     string mot = null;
+    //     Console.WriteLine();
+    //     Console.WriteLine();
+    //     AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
+    //     AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant/1000 + "[/]");
+    //     
+    //     Text text = new Text(_plateau.toString());
+    //     text.Centered();
+    //     AnsiConsole.Write(text);
+    //     while (!RechPlat)
+    //     {
+    //         while (!RechDico)
+    //         {
+    //             mot = LisMot();
+    //             if (mot == null)
+    //             {
+    //                 break;
+    //             }
+    //             RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+    //         }
+    //         if (mot == null)
+    //         {
+    //             break;
+    //         }
+    //         RechPlat = _plateau.Recherche_Mot(mot);
+    //         RechDico = false;
+    //     }
+    //     if (mot == null)
+    //     {
+    //         return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+    //     }
+    //     int point = CalculPointMot(mot, joueur);
+    //     joueur.Add_Score(point);
+    //     joueur.Add_Mot(mot);
+    //     _plateau.MajPlateau();
+    //     _joueurActuel.aJoue = true;
+    //     return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+    // }
+    //
+    // private string LisMot()
+    // {
+    //     ConsoleKeyInfo cki;
+    //     string mot = "";
+    //     Console.WriteLine(_joueurActuel.Name + " Choisissez mot et appuyez sur entrer");
+    //     do {
+    //         // Your code could perform some useful task in the following loop. However,
+    //         // for the sake of this example we'll merely pause for a quarter second.
+    //
+    //         while (Console.KeyAvailable == false)
+    //         {
+    //             Thread.Sleep(250); // Loop until input is entered.
+    //             DateTime date = DateTime.Now;
+    //             TimeSpan interval = date - _joueurActuel.Date;
+    //             if (interval.Milliseconds > _joueurActuel.TempsRestant)
+    //             {
+    //                 Console.WriteLine("Temps écoulé");
+    //                 return null;
+    //             }
+    //         }
+    //         
+    //         cki = Console.ReadKey(true);
+    //         if (cki.Key != ConsoleKey.Enter)
+    //         {
+    //             mot += cki.Key.ToString();
+    //         }
+    //         Console.Write(cki.KeyChar);
+    //     } while(cki.Key != ConsoleKey.Enter);
+    //
+    //     return mot;
+    // }
+
+    private string LisMot2()
+    {
+        string mot = "";
+        Console.WriteLine(_joueurActuel.Name + " Choisissez mot et appuyez sur entrer");
+        // Your code could perform some useful task in the following loop. However,
+        // for the sake of this example we'll merely pause for a quarter second.
+
+        while (Console.KeyAvailable == false)
+        {
+            Thread.Sleep(250); // Loop until input is entered.
+            DateTime date = DateTime.Now;
+            TimeSpan interval = date - _joueurActuel.Date;
+            if (interval.Milliseconds > _joueurActuel.TempsRestant)
             {
-                Joue(_joueur1);
+                return null;
             }
         }
         
-        
+        mot = Console.ReadLine();
+    
+        return mot;
     }
-
     void VerifTime(object state)
     {
         if (_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0)
         {
             finPartie();
         }
+
         if (_joueurActuel.TempsRestant == 0)
         {
             Console.WriteLine("Temps écoulé !");
-            if (_joueurActuel == _joueur1)
-            {
-                Joue(_joueur2);
-            }
-            else
-            {
-                Joue(_joueur1);
-            }
+            Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
         }
     }
 
