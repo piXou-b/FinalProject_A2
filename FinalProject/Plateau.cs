@@ -372,8 +372,8 @@ public class Plateau
             new MultiSelectionPrompt<string>()
                 .PageSize(10)
                 .Title("Quelle type de [dim]personnalisation[/] voulez-vous choisir?")
-                .MoreChoicesText("[grey](Move up and down to reveal more personnalisations)[/]")
-                .InstructionsText("[grey](Presser tab puis enter[blue][/] pour choisir)[/]")
+                .MoreChoicesText("[grey](bouger de haut en bas pour choisir votre personnalisation)[/]")
+                .InstructionsText("[grey](Presser space puis enter[blue][/] pour choisir)[/]")
                 .AddChoices(new[]
                 {
                     "Scrabble", "Personnel"
@@ -440,6 +440,7 @@ public class Plateau
                     Console.Write("");
                 }
                 break;
+            
             case "Personnel":
                 try
                 {
