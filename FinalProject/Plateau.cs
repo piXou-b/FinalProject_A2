@@ -367,43 +367,119 @@ public class Plateau
     public void PersonalizeLetterPoint()
     {
         Console.WriteLine("Personnalisation des points par lettre: ");
-        try
-        {
-            string letter;
-            List<string> lines = new List<string>();
-            
-            string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
-            StreamReader ligne = new StreamReader(cheminFichier);
-            while ((letter = ligne.ReadLine()) != null)
-            {
-                string[] parts = letter.Split(',');
-                string point = AnsiConsole.Ask<string>("[blue]" + parts[0] + ": [/]");
-                int numericalPoint;
-                if (int.TryParse(point, out numericalPoint))
+
+        var personnalisation = AnsiConsole.Prompt(
+            new MultiSelectionPrompt<string>()
+                .PageSize(10)
+                .Title("Quelle type de [dim]personnalisation[/] voulez-vous choisir?")
+                .MoreChoicesText("[grey](Move up and down to reveal more personnalisations)[/]")
+                .InstructionsText("[grey](Presser tab puis enter[blue][/] pour choisir)[/]")
+                .AddChoices(new[]
                 {
-                    parts[2] = point;
-                }
-                lines.Add(string.Join(",", parts));
-            }
-            ligne.Close();
+                    "Scrabble", "Personnel"
+                }));
+        var choice = personnalisation.Count == 1 ? personnalisation[0] : null;
+        if (string.IsNullOrWhiteSpace(choice))
+        {
+            choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Ok, si vous deviez en choisir [green]une[/]?")
+                    .MoreChoicesText("[grey](bouger de haut en bas pour afficher d'autres personnalisation)[/]")
+                    .AddChoices(personnalisation));
+        }
+        AnsiConsole.MarkupLine("You selected: [yellow]{0}[/]", choice);
+
+        switch (choice)
+        {
+            case "Scrabble":
+                try
+                {
+                    string letter;
+                    List<string> lines = new List<string>();
+                    
+                    List<string> pointsParLettre = new List<string>
+                    {
+                        "1", "3", "3", "2",
+                        "1", "4", "2", "4",
+                        "1", "8", "10", "1",
+                        "2", "1", "1", "3",
+                        "8", "1", "1", "1",
+                        "1", "4", "10", "10",
+                        "10", "10"
+                    };
+
+                    
+                    string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
+                    StreamReader ligne = new StreamReader(cheminFichier);
+                    int i = 0;
+                    while ((letter = ligne.ReadLine()) != null)
+                    {
+                        string[] parts = letter.Split(',');
+                        parts[2] = pointsParLettre[i];
+                        i++;
+                        lines.Add(string.Join(",", parts));
+                    }
+                    ligne.Close();
             
-            File.WriteAllLines(cheminFichier, lines);
-        }
-        catch(FileNotFoundException e)
-        {
-            Console.WriteLine(e.Message);
-        }
-        catch(IOException e)
-        {
-            Console.WriteLine(e.Message);
-        }
-        catch(Exception e)
-        {
-            Console.WriteLine("Exception: " + e.Message);
-        }
-        finally
-        {
-            Console.Write("");
+                    File.WriteAllLines(cheminFichier, lines);
+                }
+                catch(FileNotFoundException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Exception: " + e.Message);
+                }
+                finally
+                {
+                    Console.Write("");
+                }
+                break;
+            case "Personnel":
+                try
+                {
+                    string letter;
+                    List<string> lines = new List<string>();
+            
+                    string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Lettre.txt");
+                    StreamReader ligne = new StreamReader(cheminFichier);
+                    while ((letter = ligne.ReadLine()) != null)
+                    {
+                        string[] parts = letter.Split(',');
+                        string point = AnsiConsole.Ask<string>("[blue]" + parts[0] + ": [/]");
+                        int numericalPoint;
+                        if (int.TryParse(point, out numericalPoint))
+                        {
+                            parts[2] = point;
+                        }
+                        lines.Add(string.Join(",", parts));
+                    }
+                    ligne.Close();
+            
+                    File.WriteAllLines(cheminFichier, lines);
+                }
+                catch(FileNotFoundException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Exception: " + e.Message);
+                }
+                finally
+                {
+                    Console.Write("");
+                }
+                break;
         }
     }
 }
