@@ -48,27 +48,29 @@ public class Jeu
         while (true)
         {
             _joueurActuel = joueur;
+            Timer verifTime = new Timer(VerifTime,null, 0, 1000);
             Thread.Sleep(1000);
+            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
+            {
+                verifTime.Change(Timeout.Infinite, Timeout.Infinite);
+            }
+            if (joueur.TempsRestant <= 0)
+            {
+                break;
+            }
             Console.WriteLine();
             Console.WriteLine();
             AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
             AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant + "[/]");
             joueur.aJoue = false;
-            
+        
             Text text = new Text(_plateau.toString());
             text.Centered();
             AnsiConsole.Write(text);
-            
+        
             string mot = null;
             bool RechDico = false;
             bool RechPlat = false;
-            Timer verifTime = new Timer(VerifTime,null, 0, 1000);
-            if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
-            {
-                verifTime.Change(Timeout.Infinite, Timeout.Infinite);
-                finPartie();
-                break;
-            }
             while (!RechPlat)
             {
                 while (!RechDico)
@@ -78,11 +80,13 @@ public class Jeu
                     RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
                 }
                 RechPlat = _plateau.Recherche_Mot(mot);
+                RechDico = false;
             }
             int point = CalculPointMot(mot, joueur);
             joueur.Add_Score(point);
             joueur.Add_Mot(mot);
             _plateau.MajPlateau();
+            //Add plateau file avec IdUnique
             joueur.aJoue = true;
             if (joueur == _joueur1)
             {
@@ -94,10 +98,15 @@ public class Jeu
             }
         }
         
+        
     }
 
     void VerifTime(object state)
     {
+        if (_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0)
+        {
+            finPartie();
+        }
         if (_joueurActuel.TempsRestant == 0)
         {
             Console.WriteLine("Temps écoulé !");
@@ -124,8 +133,8 @@ public class Jeu
             .Width(60)
             .Label("[green bold underline]Scores[/]")
             .CenterLabel()
-            .AddItem("Joueur 1", _joueur1.Score, Color.Red)
-            .AddItem("Joueur 2", _joueur2.Score, Color.Green));
+            .AddItem(_joueur1.Name, _joueur1.Score, Color.Red)
+            .AddItem(_joueur2.Name, _joueur2.Score, Color.Green));
         Console.WriteLine();
         
         if (_joueur1.Score > _joueur2.Score)

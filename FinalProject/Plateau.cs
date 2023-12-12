@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace FinalProject;
 using System;
 using Spectre.Console;
