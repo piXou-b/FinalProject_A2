@@ -55,11 +55,8 @@ public class Joueur
     private void UpdateTime(object state)
     {
         if (!_aJoue)
-        {
-            if (_tempsRestant > 0)
-            {
-                _tempsRestant--;
-            }
+        { 
+            _tempsRestant--;
         }
     }
 
