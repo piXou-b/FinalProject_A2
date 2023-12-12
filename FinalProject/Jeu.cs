@@ -193,7 +193,7 @@ public class Jeu
     private string LisMot2()
     {
         string mot = "";
-        Console.WriteLine(_joueurActuel.Name + " Choisissez mot et appuyez sur entrer");
+        Console.WriteLine(_joueurActuel.Name + ", choisissez un mot et appuyez sur entrer");
         // Your code could perform some useful task in the following loop. However,
         // for the sake of this example we'll merely pause for a quarter second.
 
@@ -204,6 +204,7 @@ public class Jeu
             TimeSpan interval = date - _joueurActuel.Date;
             if (interval.Milliseconds > _joueurActuel.TempsRestant)
             {
+                Console.WriteLine("Temps écoulé !");
                 return null;
             }
         }
