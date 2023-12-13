@@ -53,29 +53,22 @@ public class Jeu
         bool quit = false;
         do
         {
-            AnsiConsole.Markup("[red underline]Choisissez un mode de jeu :[/]");
+            string choix = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[red underline]Choisissez un mode de jeu :[/]")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Déplacer vous de haut en bas pour choisir)[/]")
+                    .AddChoices(new[] {
+                        "Jouer à partir d’un fichier", "Jouer à partir d’un plateau généré aléatoirement",  "Sortir"
+                    }));
             Console.WriteLine();
-            var table2 = new Table();
-            table2.AddColumn("Option").LeftAligned();
-            table2.AddColumn("Durée").LeftAligned();
-
-            table2.AddRow("1", "Jouer à partir d’un fichier");
-            table2.AddRow("2", "Jouer à partir d’un plateau généré aléatoirement");
-            table2.AddRow("3", "Sortir");
-            AnsiConsole.Write(table2);
-            
-            ConsoleKeyInfo cki2;
-            cki2 = Console.ReadKey(true);
-
-            Console.WriteLine();
-
 
             string cheminFichier = Path.Combine("..", "..", "..", "..", "data", "Mots_Français.txt");
             Dictionnaire dico = new Dictionnaire(cheminFichier);
             
-            switch (cki2.Key)
+            switch (choix)
             {
-                case ConsoleKey.D1:
+                case "Jouer à partir d’un fichier":
                     string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
                     Plateau plateau2 = new Plateau(cheminFichierPlateau);
                     
@@ -92,7 +85,7 @@ public class Jeu
                     ConsoleKeyInfo cki;
             
                     Console.Clear();
-                    AnsiConsole.Markup("[red underline]Choisissez une durée de partie :[/]");
+                    AnsiConsole.Markup("[red underline]Choisissez une durée de partie :[/]  [dim](appuie sur le chiffre correspondant)[/]");
                     Console.WriteLine();
                     var table = new Table();
                     table.AddColumn("Option").LeftAligned();
@@ -139,7 +132,7 @@ public class Jeu
                         cki = Console.ReadKey();
                     } while (bonneTouche == false);
                     break;
-                case ConsoleKey.D2:
+                case "Jouer à partir d’un plateau généré aléatoirement":
                     Plateau plateauRnD = new Plateau();
                     plateauRnD.PersonalizeLetterPoint();
                     
@@ -154,7 +147,7 @@ public class Jeu
                     ConsoleKeyInfo cki3;
             
                     Console.Clear();
-                    AnsiConsole.Markup("[red underline]Choisissez une durée de partie :[/]");
+                    AnsiConsole.Markup("[red underline]Choisissez une durée de partie :[/]  [dim](appuie sur le chiffre correspondant)[/]");
                     Console.WriteLine();
                     var table3 = new Table();
                     table3.AddColumn("Option").LeftAligned();
@@ -202,7 +195,7 @@ public class Jeu
                         cki3 = Console.ReadKey();
                     } while (bonneTouche2 == false);
                     break;
-                case ConsoleKey.D3:
+                case "Sortir":
                     quit = true;
                     break;
                 default:
@@ -330,6 +323,7 @@ public class Jeu
                     .Centered()
                     .Color(Color.Red));
         }
+        Thread.Sleep(3000);
         AnsiConsole.MarkupLine("[dim italic]Appuyer sur [blue dim]une touche[/] pour continuer[/]");
     }
 
