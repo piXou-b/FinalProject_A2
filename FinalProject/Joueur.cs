@@ -16,7 +16,7 @@ public class Joueur
     private DateTime _date;
 
     /// <summary>
-    /// Constructeur
+    /// Constructeur initialisant un joueur
     /// </summary>
     /// <param name="name"></param>
     public Joueur(string name)
@@ -35,24 +35,26 @@ public class Joueur
     public string Name { get => _name; }
     public List<string> Words { get => _words; }
     public int Score { get => _score; }
-
     public int TempsRestantSecondes
     {
         get { return this._tempsRestantMillis/1000; }
     }
-
     public bool aJoue
     {
         get { return this._aJoue; }
         set { this._aJoue = value; }
     }
-
     public DateTime Date
     {
         get { return this._date; }
         set { this._date = value; }
     }
-    public void initTemps(int tempsSecondes)
+    
+    /// <summary>
+    /// Initialise le temps que possede le joueur pour trouver ces mots
+    /// </summary>
+    /// <param name="tempsSecondes"></param>
+    public void InitTemps(int tempsSecondes)
     {
         _tempsRestantMillis = tempsSecondes * 1000; ;
     }
@@ -70,9 +72,9 @@ public class Joueur
     }
     
     /// <summary>
-    /// Classe toString() qui decrite le joueur
+    /// Classe toString() qui decrit le joueursous forme de chaine de caractere
     /// </summary>
-    /// <returns>Retourne une chaîne de caractères qui décrit un joueur</returns>
+    /// <returns>String</returns>
     public string toString()
     {
         return $"Joueur: {_name}\nScore: {_score}\nMots trouvés: {string.Join(", ", _words)}";
@@ -91,7 +93,7 @@ public class Joueur
     /// Teste si le mot est déjà dans la liste des mots déjà trouvés par le joueur au cours de la partie
     /// </summary>
     /// <param name="mot"></param>
-    /// <returns>Retourne un booléen si oui ou non le mot est présent</returns>
+    /// <returns>Bool</returns>
     public bool Contient(string mot)
     {
         foreach (string word in Words)
@@ -104,6 +106,11 @@ public class Joueur
 
         return false;
     }
+    
+    /// <summary>
+    /// Permet de renvoyer le mot entré par l'utilisateur
+    /// </summary>
+    /// <returns>String</returns>
     public string? LireMot()
     {
         int interval = 100;

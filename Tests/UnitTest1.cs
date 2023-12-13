@@ -52,7 +52,6 @@ public class Tests
     }
 
     [Test]
-
     public void JoueurToString()
     {
         Joueur jouer = new Joueur("benjamin");

@@ -3,12 +3,22 @@ using Spectre.Console;
 
 public class Jeu
 {
+    /// <summary>
+    /// Attributs
+    /// </summary>
     private Dictionnaire _dico;
     private Plateau _plateau;
     private Joueur _joueur1;
     private Joueur _joueur2;
     private Joueur _joueurActuel;
 
+    /// <summary>
+    /// Constructeur du jeu qui permet la mise en relation de l'ensemble des classes du projet
+    /// </summary>
+    /// <param name="dico"></param>
+    /// <param name="plateau"></param>
+    /// <param name="joueur1"></param>
+    /// <param name="joueur2"></param>
     public Jeu(Dictionnaire dico, Plateau plateau, Joueur joueur1, Joueur joueur2)
     {
         this._dico = dico;
@@ -17,25 +27,10 @@ public class Jeu
         this._joueur2 = joueur2;
         this._joueurActuel = null;
     }
-    public Dictionnaire Dico
-    {
-        get { return this._dico; }
-    }
-
-    public Plateau Plateau
-    {
-        get { return this._plateau; }
-    }
-
-    public Joueur Joueur1
-    {
-        get { return this._joueur1; }
-    }
-    public Joueur Joueur2
-    {
-        get { return this._joueur2; }
-    }
     
+    /// <summary>
+    /// Main programme qui lance tout le jeu
+    /// </summary>
     static void Main()
     {
         Console.WriteLine();
@@ -83,7 +78,7 @@ public class Jeu
                 case ConsoleKey.D1:
                     string cheminFichierPlateau = Path.Combine("..", "..", "..", "..", "data", "Test1.csv");
                     Plateau plateau2 = new Plateau(cheminFichierPlateau);
-                    //si le mec ne choisi pas de personnaliser il faut garder le premier fichier ? ou alors faire juste les point du scrabble et pas personnaliser
+                    
                     plateau2.PersonalizeLetterPoint();
                     
                     string name = AnsiConsole.Ask<string>("What's your [green]name[/], first player?");
@@ -137,8 +132,8 @@ public class Jeu
             
                         if (bonneTouche)
                         {
-                            joueur1.initTemps(temps);
-                            joueur2.initTemps(temps);
+                            joueur1.InitTemps(temps);
+                            joueur2.InitTemps(temps);
                             jeu.StartGame();
                         }
             
@@ -200,8 +195,8 @@ public class Jeu
             
                         if (bonneTouche2)
                         {
-                            joueur3.initTemps(temps);
-                            joueur4.initTemps(temps);
+                            joueur3.InitTemps(temps);
+                            joueur4.InitTemps(temps);
                             jeuRnD.StartGame();
                         }
             
@@ -220,7 +215,10 @@ public class Jeu
             Console.Clear();
         } while(!quit);
     }
-
+    
+    /// <summary>
+    /// Commence la partie et sauvegarde les plateau de chaque partie dans un fichier
+    /// </summary>
     private void StartGame()
     {
         string uniqueId = DateTime.Now.ToString("yyyyMMdd_HHmmss");
@@ -229,16 +227,18 @@ public class Jeu
         Joueur? joueurActuel = null;
         while (_joueur1.TempsRestantSecondes > 0 || _joueur2.TempsRestantSecondes > 0)
         {
-            joueurActuel = joueurActuel == Joueur1 ? Joueur2 : Joueur1;
-            Jouer(joueurActuel);
+            joueurActuel = joueurActuel == _joueur1 ? _joueur2 : _joueur1;
+            Display(joueurActuel);
             this._plateau.ToFile(cheminFichier);
         }
         finPartie();
     }
 
-    //Bugs au niveau des temps des joueurs
-    //Add method toRead at each iteration
-    public void Jouer(Joueur joueur)
+    /// <summary>
+    /// Controler de l'affichage du jeu lorsqu'il est lancé (plateau, temps restant, joueur)
+    /// </summary>
+    /// <param name="joueur"></param>
+    public void Display(Joueur joueur)
     {
         if (joueur.TempsRestantSecondes <= 0)
         {
@@ -274,7 +274,7 @@ public class Jeu
             RechPlat = _plateau.Recherche_Mot(mot);
             RechDico = false;
         }
-        int point = CalculPointMot(mot, joueur);
+        int point = CalculPointMot(mot);
         joueur.Add_Score(point);
         joueur.Add_Mot(mot);
         _plateau.MajPlateau();
@@ -282,7 +282,9 @@ public class Jeu
         joueur.aJoue = true;
     }
     
-
+    /// <summary>
+    /// Controle de l'affichage de la fin de parti et indication pour continuer a jouer sur une nouvelle partie
+    /// </summary>
     public void finPartie()
     {
         Console.WriteLine("\nLa partie est finie");
@@ -301,20 +303,35 @@ public class Jeu
         
         if (_joueur1.Score > _joueur2.Score)
         {
-            Console.WriteLine(_joueur1.Name + " a gagné la partie");
+            AnsiConsole.Write(
+                new FigletText(_joueur1.Name + " a gagné la partie")
+                    .Centered()
+                    .Color(Color.Red));
         }
         else if (_joueur2.Score > _joueur1.Score)
         {
-            Console.WriteLine(_joueur2.Name + " a gagné la partie");
+            AnsiConsole.Write(
+                new FigletText(_joueur2.Name + " a gagné la partie")
+                    .Centered()
+                    .Color(Color.Red));
         }
         else
         {
-            Console.WriteLine("Egalité !");
+            AnsiConsole.Write(
+                new FigletText("Egalité !")
+                    .Centered()
+                    .Color(Color.Red));
         }
-        AnsiConsole.MarkupLine("[dim italic]Appuyer sur [blue dim]une touche[/] pour relancer un jeu[/]");
+        AnsiConsole.MarkupLine("[dim italic]Appuyer sur [blue dim]une touche[/] pour continuer[/]");
     }
 
-    private int CalculPointMot(string mot, Joueur joueur)
+    /// <summary>
+    /// Calcul les points du mot que le joueur courant a trouvé
+    /// </summary>
+    /// <param name="mot"></param>
+    /// <param name="joueur"></param>
+    /// <returns>Int</returns>
+    private int CalculPointMot(string mot)
     {
         int point = 0;
         mot = mot.ToUpper();
@@ -354,7 +371,18 @@ public class Jeu
         {
             Console.Write("");
         }
-        
-        return point;
+
+        if (mot.Length >= 3 && mot.Length <= 5)
+        {
+            return (point * mot.Length) / 3;
+        }
+        else if (mot.Length > 5)
+        {
+            return (point * mot.Length) / 2;
+        }
+        else
+        {
+            return point;
+        }
     }
 }

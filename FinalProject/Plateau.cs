@@ -29,6 +29,9 @@ public class Plateau
         ToRead(filename);
     }
     
+    /// <summary>
+    /// Property
+    /// </summary>
     public string[,] Plato { get => this._plateau; }
     
     /// <summary>
@@ -140,9 +143,9 @@ public class Plateau
     }
 
     /// <summary>
-    /// Description du plateau
+    /// Affichage du plateau
     /// </summary>
-    /// <returns>Chaine de caratère</returns>
+    /// <returns>String</returns>
     public string toString()
     {
         if (this._plateau.Length == 0)
@@ -223,7 +226,7 @@ public class Plateau
     /// <param name="letter"></param>
     /// <param name="coorI"></param>
     /// <param name="coorJ"></param>
-    /// <returns>List de coordonées indiquant tout les voisins possibles</returns>
+    /// <returns>List&lt;(int, int)&gt;</returns>
     private List<(int, int)> Voisin(string letter, int coorI, int coorJ)
     {
         letter = letter.ToUpper();
@@ -261,7 +264,7 @@ public class Plateau
     /// Teste si le mot passé en paramètre est un mot éligible sur le plateau
     /// </summary>
     /// <param name="mot"></param>
-    /// <returns>Booleen</returns>
+    /// <returns>Bool</returns>
     public bool Recherche_Mot(string mot)
     {
         mot = mot.ToUpper();
@@ -288,7 +291,7 @@ public class Plateau
     /// <param name="coordMot"></param>
     /// <param name="mot"></param>
     /// <param name="indexLetterMot"></param>
-    /// <returns>Booleen</returns>
+    /// <returns>Bool</returns>
     private bool TrouverCoordMot(List<(int, int)> coordMot, string mot, int indexLetterMot)
     {
         mot  = mot.ToUpper();

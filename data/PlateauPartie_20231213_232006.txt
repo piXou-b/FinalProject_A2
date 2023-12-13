@@ -1,0 +1,117 @@
+A;B;C; ; ; ;G;H
+E;J;S;D; ; ;K;O
+P;T;C;T;E; ;R;V
+U;E;Z;D;E;F;M;M
+I;I;C;T;E;U;J;N
+S;D;H;U;S;A;G;R
+R;R;C;A;E;N;C;P
+C;B;E;A;I;N;U;S
+
+A;B;C; ; ; ; ; 
+E;J;S;D; ; ;G;H
+P;T;C;T;E; ;K;O
+U;E;Z;D;E; ;R;V
+I;I;C;T;E;F;M;M
+S;D;H;U;S;U;J;N
+R;R;C;A;E;A;G;R
+C;B;E;A;I;N;C;P
+
+A; ; ; ; ; ; ; 
+E;B; ;D; ; ;G;H
+P;J;C;T;E; ;K;O
+U;T;S;D;E; ;R;V
+I;E;C;T;E;F;M;M
+S;I;Z;U;S;U;J;N
+R;D;C;A;E;A;G;R
+C;R;H;A;I;N;C;P
+
+A; ; ; ; ; ; ; 
+E;B; ; ; ; ;G;H
+P;J; ;D; ; ;K;O
+U;T;C;T; ; ;R;V
+I;E;S;D;E; ;M;M
+S;I;C;T;E;F;J;N
+R;D;Z;U;E;U;G;R
+C;R;C;A;S;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ;B; ;D; ; ;K;O
+A;J;C;T; ; ;R;V
+E;T;S;D;E; ;M;M
+P;E;C;T;E;F;J;N
+U;D;Z;U;E;U;G;R
+I;R;C;A;S;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ;B; ; ; ; ;K;O
+A;J; ;D; ; ;R;V
+E;T;C;T; ; ;M;M
+P;E;S;D; ;F;J;N
+U;D;C;T;E;U;G;R
+I;R;Z;U;E;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ;B; ; ; ; ;K;O
+A;J; ; ; ; ;R;V
+E;T; ; ; ; ;M;M
+P;E;C;D; ;F;J;N
+U;D;S;T;E;U;G;R
+I;R;C;D;E;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ; ; ; ;M;M
+E;T; ;D; ;F;J;N
+P;E;C;T;E;U;G;R
+U;D;S;D;E;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ;B; ; ; ; ;M;M
+A;J; ;D; ;F;J;N
+E;T;C;T;E;U;G;R
+P;E;S;D;E;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ;D; ;F;J;N
+A;B;C;T;E;U;G;R
+E;J;S;D;E;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ;D; ; ;J;N
+A;B;C;T;E; ;G;R
+E;J;S;D;E;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ;D; ; ;J;N
+A;B;C;T;E; ;G;R
+E;J;S;D;E;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ;D; ; ;J;N
+A;B;C;T;E; ;G;R
+E;J;S;D;E;F;C;P
+

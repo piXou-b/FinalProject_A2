@@ -9,7 +9,7 @@ public class Dictionnaire
     private List<string> _dictionnaire;
     
     /// <summary>
-    /// Constructeur
+    /// Constructeur initialisant un dictionnaire de mots;
     /// </summary>
     public Dictionnaire(string filename)
     {
@@ -27,7 +27,7 @@ public class Dictionnaire
     /// Remplir la list donner en paramètre par les mots du fichier Mots_Français 
     /// </summary>
     /// <param name="list"></param>
-    void RemplirDico(List<string> list, string filename)
+    private void RemplirDico(List<string> list, string filename)
     {
         string line;
         try
@@ -56,9 +56,9 @@ public class Dictionnaire
     }
     
     /// <summary>
-    /// description du dictionnaire
+    /// description du dictionnaire(le nombre de mots par lettre et la langue)
     /// </summary>
-    /// <returns>le nombre de mots par lettre et la langue</returns>
+    /// <returns>String</returns>
     public string toString()
     {
         string result = "Nombre de mots par lettre: ";
@@ -90,7 +90,7 @@ public class Dictionnaire
     /// <param name="arr"></param>
     /// <param name="low"></param>
     /// <param name="high"></param>
-    public void QuickSort(List<string> arr, int low, int high)
+    private void QuickSort(List<string> arr, int low, int high)
     {
         if (low < high)
         {
@@ -115,12 +115,12 @@ public class Dictionnaire
     }
     
     /// <summary>
-    /// teste si le mot appartient bien au dictionnaire
+    /// Teste si le mot appartient bien au dictionnaire
     /// </summary>
     /// <param name="mot"></param>
     /// <param name="deb"></param>
     /// <param name="fin"></param>
-    /// <returns>true ou false</returns>
+    /// <returns>Bool</returns>
     public bool RechDicoRecursif(string mot, int deb, int fin)
     {
         int mid = (deb + fin) / 2;
