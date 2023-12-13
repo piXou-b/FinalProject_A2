@@ -50,4 +50,14 @@ public class Tests
         bool empty = plateau.IsEmpty();
         Assert.That(empty, Is.EqualTo(true));
     }
+
+    [Test]
+
+    public void JoueurToString()
+    {
+        Joueur jouer = new Joueur("benjamin");
+        string r = jouer.toString();
+        
+        Assert.That(r, Is.EqualTo("Joueur: benjamin\nScore: 0\nMots trouvés: "));
+    }
 }

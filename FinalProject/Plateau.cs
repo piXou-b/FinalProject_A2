@@ -34,7 +34,7 @@ public class Plateau
     /// <summary>
     /// Créer un plateau aléatoire
     /// </summary>
-    public void SetRndPlateau()
+    private void SetRndPlateau()
     {
         try
         {
@@ -104,7 +104,7 @@ public class Plateau
     /// Créer un plateau a partir d'un fichier
     /// </summary>
     /// <param name="filename"></param>
-    public void ToRead(string filename)
+    private void ToRead(string filename)
     {
         try
         {
