@@ -1,0 +1,90 @@
+P;M;W;A;L;R;J;O
+O;X;K;O;Y;R;B;Z
+B;G;L;D;N;N;J;A
+A;S;H;G;E;H;Q;Q
+M;V;L;S;C;G;T;L
+H;E;D;O;C;T;R;F
+V;R;S;O;F;V;I;T
+D;I;A;S;A;U;I;E
+
+P;M; ; ;L;R;J;O
+O;X;W;A;Y;R;B;Z
+B;G;K;O;N;N;J;A
+A;S;L;D;E;H;Q;Q
+M;V;H;G;C;G;T;L
+H;E;L;S;C;T;R;F
+V;R;D;O;F;V;I;T
+D;I;S;O;A;U;I;E
+
+P;M; ; ;L;R;J;O
+O;X;W;A;Y;R;B;Z
+B;G;K;O;N;N;J;A
+A;S;L;D;E;H;Q;Q
+M;V;H;G;C;G;T;L
+H;E;L;S;C;T;R;F
+V;R;D;O;F;V;I;T
+D;I;S;O;A;U;I;E
+
+P;M; ; ; ; ;J;O
+O;X;W;A;L;R;B;Z
+B;G;K;O;Y;R;J;A
+A;S;L;D;N;N;Q;Q
+M;V;H;G;E;H;T;L
+H;E;L;S;C;G;R;F
+V;R;D;O;C;T;I;T
+D;I;S;O;F;V;I;E
+
+P;M; ; ; ; ;J;O
+O;X;W;A;L;R;B;Z
+B;G;K;O;Y;R;J;A
+A;S;L;D;N;N;Q;Q
+M;V;H;G;E;H;T;L
+H;E;L;S;C;G;R;F
+V;R;D;O;C;T;I;T
+D;I;S;O;F;V;I;E
+
+P;M; ; ; ; ; ; 
+O;X;W;A;L; ;J;O
+B;G;K;O;Y;R;B;Z
+A;S;L;D;N;R;J;A
+M;V;H;G;E;N;Q;Q
+H;E;L;S;C;H;T;L
+V;R;D;O;C;G;R;F
+D;I;S;O;F;T;I;T
+
+P;M; ; ; ; ; ; 
+O;X;W;A;L; ;J;O
+B;G;K;O;Y;R;B;Z
+A;S;L;D;N;R;J;A
+M;V;H;G;E;N;Q;Q
+H;E;L;S;C;H;T;L
+V;R;D;O;C;G;R;F
+D;I;S;O;F;T;I;T
+
+ ; ; ; ; ; ; ; 
+P; ;W;A;L; ;J;O
+O; ;K;O;Y;R;B;Z
+B;M;L;D;N;R;J;A
+A;X;H;G;E;N;Q;Q
+M;G;L;S;C;H;T;L
+H;S;D;O;C;G;R;F
+V;V;S;O;F;T;I;T
+
+ ; ; ; ; ; ; ; 
+P; ;W;A;L; ;J;O
+O; ;K;O;Y;R;B;Z
+B;M;L;D;N;R;J;A
+A;X;H;G;E;N;Q;Q
+M;G;L;S;C;H;T;L
+H;S;D;O;C;G;R;F
+V;V;S;O;F;T;I;T
+
+ ; ; ; ; ; ; ; 
+P; ;W;A;L; ;J;O
+O; ;K;O;Y;R;B;Z
+B;M;L;D;N;R;J;A
+A;X;H;G;E;N;Q;Q
+M;G;L;S;C;H;T;L
+H;S;D;O;C;G;R;F
+V;V;S;O;F;T;I;T
+
