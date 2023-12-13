@@ -109,7 +109,7 @@ public class Joueur
         int interval = 100;
         ConsoleKeyInfo cki;
         Stack<char> lettres = new Stack<char>();
-        Console.WriteLine(Name + " Choisissez mot et appuyez sur entrer");
+        Console.WriteLine("Choisissez mot et appuyez sur entrer");
         do
         {
             // Your code could perform some useful task in the following loop. However,
