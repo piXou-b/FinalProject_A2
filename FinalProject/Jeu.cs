@@ -269,10 +269,17 @@ public class Jeu
                     return;
                 }
                 RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
-
+                if (!RechDico)
+                {
+                    Console.WriteLine("Mot incorrect");
+                }
             }
             RechPlat = _plateau.Recherche_Mot(mot);
             RechDico = false;
+            if (!RechPlat)
+            {
+                Console.WriteLine("Mot incorrect");
+            }
         }
         int point = CalculPointMot(mot);
         joueur.Add_Score(point);
