@@ -125,8 +125,7 @@ public class Jeu
                                 temps = 120;
                                 break;
                             default:
-                                Console.WriteLine(
-                                    "Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
+                                Console.WriteLine("Touche non valide. Veuillez choisir une touche correspondant à un temps indiqué");
                                 break;
                         }
             
@@ -238,7 +237,7 @@ public class Jeu
     /// Controler de l'affichage du jeu lorsqu'il est lancé (plateau, temps restant, joueur)
     /// </summary>
     /// <param name="joueur"></param>
-    public void Display(Joueur joueur)
+    private void Display(Joueur joueur)
     {
         if (joueur.TempsRestantSecondes <= 0)
         {
@@ -271,14 +270,16 @@ public class Jeu
                 RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
                 if (!RechDico)
                 {
-                    Console.WriteLine("Mot incorrect");
+                    AnsiConsole.MarkupLine("[red dim]Mot incorrect[/]");
+                    Console.WriteLine();
                 }
             }
             RechPlat = _plateau.Recherche_Mot(mot);
             RechDico = false;
             if (!RechPlat)
             {
-                Console.WriteLine("Mot incorrect");
+                AnsiConsole.MarkupLine("[red dim]Mot incorrect[/]");
+                Console.WriteLine();
             }
         }
         int point = CalculPointMot(mot);
@@ -292,7 +293,7 @@ public class Jeu
     /// <summary>
     /// Controle de l'affichage de la fin de parti et indication pour continuer a jouer sur une nouvelle partie
     /// </summary>
-    public void finPartie()
+    private void finPartie()
     {
         Console.WriteLine("\nLa partie est finie");
         Console.WriteLine(_joueur1.toString());
