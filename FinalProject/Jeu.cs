@@ -73,6 +73,7 @@ public class Jeu
                     Plateau plateau2 = new Plateau(cheminFichierPlateau);
                     
                     plateau2.PersonalizeLetterPoint();
+                    Console.WriteLine();
                     
                     string name = AnsiConsole.Ask<string>("What's your [green]name[/], first player?");
                     Joueur joueur1 = new Joueur(name);
