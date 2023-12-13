@@ -38,61 +38,50 @@ public class Jeu
 
     public void Main()
     {
-        Joue(_joueur1);
+        Joueur? joueurActuel = null;
+        while (_joueur1.TempsRestantSecondes > 0 || _joueur2.TempsRestantSecondes > 0)
+        {
+            joueurActuel = joueurActuel == Joueur1 ? Joueur2 : Joueur1;
+            Jouer(joueurActuel);
+        }
+        finPartie();
     }
 
     //Bugs au niveau des temps des joueurs
     //Add method toRead at each iteration
-    public bool Joue(Joueur joueur)
+    public void Jouer(Joueur joueur)
     {
-        
-        _joueurActuel = joueur;
-        Timer verifTime = new Timer(VerifTime,null, 0, 250);
-        Thread.Sleep(1000);
-        if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
+        if (joueur.TempsRestantSecondes <= 0)
         {
-            verifTime.Change(Timeout.Infinite, Timeout.Infinite);
-            return false;
-        }
-        if (joueur.TempsRestant <= 0)
-        {
-            return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
+            return;
         }
         Console.WriteLine();
         Console.WriteLine();
         AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
-        AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant/1000 + "[/]");
+        AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestantSecondes + "[/]");
         joueur.aJoue = false;
-    
+
         Text text = new Text(_plateau.toString());
         text.Centered();
         AnsiConsole.Write(text);
-    
-        string mot = null;
+
+        string? mot = null;
         bool RechDico = false;
         bool RechPlat = false;
         while (!RechPlat)
         {
             while (!RechDico)
             {
-                mot = LisMot2();
+                mot = joueur.LireMot();
                 if (mot == null)
                 {
-                    break; 
+                    return;
                 }
                 RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
-                    
-            }
-            if (mot == null)
-            {
-                break; 
+
             }
             RechPlat = _plateau.Recherche_Mot(mot);
             RechDico = false;
-        }
-        if (mot == null)
-        {
-            return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
         }
         int point = CalculPointMot(mot, joueur);
         joueur.Add_Score(point);
@@ -100,136 +89,12 @@ public class Jeu
         _plateau.MajPlateau();
         //Add plateau file avec IdUnique
         joueur.aJoue = true;
-        return Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
     }
-    // public bool Joue2(Joueur joueur)
-    // {
-    //     _joueurActuel = joueur;
-    //     ConsoleKeyInfo cki;
-    //     _joueurActuel.Date = DateTime.Now;
-    //     _joueurActuel.aJoue = false;
-    //     if ((_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0) || _plateau.IsEmpty())
-    //     {
-    //         finPartie();
-    //         return false;
-    //     }
-    //     if (joueur.TempsRestant <= 0)
-    //     {
-    //         return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
-    //     }
-    //     bool RechDico = false;
-    //     bool RechPlat = false;
-    //     string mot = null;
-    //     Console.WriteLine();
-    //     Console.WriteLine();
-    //     AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
-    //     AnsiConsole.MarkupLine("[italic]Temps restant : " + joueur.TempsRestant/1000 + "[/]");
-    //     
-    //     Text text = new Text(_plateau.toString());
-    //     text.Centered();
-    //     AnsiConsole.Write(text);
-    //     while (!RechPlat)
-    //     {
-    //         while (!RechDico)
-    //         {
-    //             mot = LisMot();
-    //             if (mot == null)
-    //             {
-    //                 break;
-    //             }
-    //             RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
-    //         }
-    //         if (mot == null)
-    //         {
-    //             break;
-    //         }
-    //         RechPlat = _plateau.Recherche_Mot(mot);
-    //         RechDico = false;
-    //     }
-    //     if (mot == null)
-    //     {
-    //         return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
-    //     }
-    //     int point = CalculPointMot(mot, joueur);
-    //     joueur.Add_Score(point);
-    //     joueur.Add_Mot(mot);
-    //     _plateau.MajPlateau();
-    //     _joueurActuel.aJoue = true;
-    //     return Joue2(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
-    // }
-    //
-    // private string LisMot()
-    // {
-    //     ConsoleKeyInfo cki;
-    //     string mot = "";
-    //     Console.WriteLine(_joueurActuel.Name + " Choisissez mot et appuyez sur entrer");
-    //     do {
-    //         // Your code could perform some useful task in the following loop. However,
-    //         // for the sake of this example we'll merely pause for a quarter second.
-    //
-    //         while (Console.KeyAvailable == false)
-    //         {
-    //             Thread.Sleep(250); // Loop until input is entered.
-    //             DateTime date = DateTime.Now;
-    //             TimeSpan interval = date - _joueurActuel.Date;
-    //             if (interval.Milliseconds > _joueurActuel.TempsRestant)
-    //             {
-    //                 Console.WriteLine("Temps écoulé");
-    //                 return null;
-    //             }
-    //         }
-    //         
-    //         cki = Console.ReadKey(true);
-    //         if (cki.Key != ConsoleKey.Enter)
-    //         {
-    //             mot += cki.Key.ToString();
-    //         }
-    //         Console.Write(cki.KeyChar);
-    //     } while(cki.Key != ConsoleKey.Enter);
-    //
-    //     return mot;
-    // }
-
-    private string LisMot2()
-    {
-        string mot = "";
-        Console.WriteLine(_joueurActuel.Name + ", choisissez un mot et appuyez sur entrer");
-        // Your code could perform some useful task in the following loop. However,
-        // for the sake of this example we'll merely pause for a quarter second.
-
-        while (Console.KeyAvailable == false)
-        {
-            Thread.Sleep(250); // Loop until input is entered.
-            DateTime date = DateTime.Now;
-            TimeSpan interval = date - _joueurActuel.Date;
-            if (interval.Milliseconds > _joueurActuel.TempsRestant)
-            {
-                Console.WriteLine("Temps écoulé !");
-                return null;
-            }
-        }
-        
-        mot = Console.ReadLine();
     
-        return mot;
-    }
-    void VerifTime(object state)
-    {
-        if (_joueur1.TempsRestant <= 0 && _joueur2.TempsRestant <= 0)
-        {
-            finPartie();
-        }
-
-        if (_joueurActuel.TempsRestant == 0)
-        {
-            Console.WriteLine("Temps écoulé !");
-            Joue(_joueurActuel == _joueur1 ? _joueur2 : _joueur1);
-        }
-    }
 
     public void finPartie()
     {
-        Console.WriteLine("La partie est finie");
+        Console.WriteLine("\nLa partie est finie");
         Console.WriteLine(_joueur1.toString());
         Console.WriteLine();
         Console.WriteLine(_joueur2.toString());
@@ -255,8 +120,6 @@ public class Jeu
         {
             Console.WriteLine("Egalité !");
         }
-        
-        Environment.Exit(0);
     }
 
     private int CalculPointMot(string mot, Joueur joueur)

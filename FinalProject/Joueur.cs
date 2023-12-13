@@ -1,7 +1,8 @@
 using System.Runtime.CompilerServices;
 
 namespace FinalProject;
-
+using Spectre.Console;
+using System.Runtime.CompilerServices;
 public class Joueur
 {
     /// <summary>
@@ -10,9 +11,8 @@ public class Joueur
     private string _name;
     private List<string> _words;
     private int _score;
-    private Timer _timer;
     private bool _aJoue;
-    private int _tempsRestant;
+    private int _tempsRestantMillis;
     private DateTime _date;
 
     /// <summary>
@@ -24,9 +24,8 @@ public class Joueur
         this._name = name;
         this._words = new List<string>();
         this._score = 0;
-        this._timer = new Timer(UpdateTime,null, 0, 250);
         this._aJoue = true;
-        this._tempsRestant = int.MinValue;
+        this._tempsRestantMillis = int.MinValue;
         this._date = DateTime.Now;
     }
 
@@ -37,15 +36,9 @@ public class Joueur
     public List<string> Words { get => _words; }
     public int Score { get => _score; }
 
-    public Timer Timer
+    public int TempsRestantSecondes
     {
-        get { return this._timer; }
-    }
-
-    public int TempsRestant
-    {
-        get { return this._tempsRestant; }
-        set { this._tempsRestant = value; }
+        get { return this._tempsRestantMillis/1000; }
     }
 
     public bool aJoue
@@ -54,18 +47,14 @@ public class Joueur
         set { this._aJoue = value; }
     }
 
-    private void UpdateTime(object state)
-    {
-        if (!_aJoue)
-        {
-            _tempsRestant -= 250;
-        }
-    }
-
     public DateTime Date
     {
         get { return this._date; }
         set { this._date = value; }
+    }
+    public void initTemps(int tempsSecondes)
+    {
+        _tempsRestantMillis = tempsSecondes * 1000; ;
     }
 
     /// <summary>
@@ -114,5 +103,53 @@ public class Joueur
         }
 
         return false;
+    }
+    public string? LireMot()
+    {
+        int interval = 100;
+        ConsoleKeyInfo cki;
+        Stack<char> lettres = new Stack<char>();
+        Console.WriteLine(Name + " Choisissez mot et appuyez sur entrer");
+        do
+        {
+            // Your code could perform some useful task in the following loop. However,
+            // for the sake of this example we'll merely pause for a quarter second.
+
+            while (Console.KeyAvailable == false)
+            {
+                Thread.Sleep(interval); // Loop until input is entered.
+                _tempsRestantMillis -= interval;
+                if (_tempsRestantMillis <= 0)
+                {
+                    Console.WriteLine("\nTemps écoulé");
+                    return null;
+                }
+            }
+
+            cki = Console.ReadKey(true);
+            if (cki.Key == ConsoleKey.Enter)
+            {
+                char[] final = lettres.ToArray();
+                Array.Reverse(final);
+                string mot = new string(final);
+                Console.WriteLine($"\n{mot}");
+                AnsiConsole.MarkupLine("[italic]Temps restant : " + TempsRestantSecondes + "[/]");
+                return mot;
+            }
+            if (cki.Key == ConsoleKey.Backspace)
+            {
+                if (lettres.Count != 0)
+                {
+                    lettres.Pop();
+                    // backspace + space + backspace to erase last char
+                    Console.Write("\b \b");
+                }
+            }
+            else if (cki.Key >= ConsoleKey.A && cki.Key <= ConsoleKey.Z)
+            {
+                lettres.Push(cki.KeyChar);
+                Console.Write(cki.KeyChar);
+            }
+        } while (true);
     }
 }
