@@ -132,8 +132,12 @@ public class Joueur
                 char[] final = lettres.ToArray();
                 Array.Reverse(final);
                 string mot = new string(final);
-                Console.WriteLine($"\n{mot}");
-                AnsiConsole.MarkupLine("[italic]Temps restant : " + TempsRestantSecondes + "[/]");
+                
+                Text text = new Text("Temps restant : " + this._tempsRestantMillis/1000);
+                text.RightJustified();
+                Console.WriteLine();
+                AnsiConsole.Write(text);
+                
                 return mot;
             }
             if (cki.Key == ConsoleKey.Backspace)

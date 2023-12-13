@@ -180,7 +180,7 @@ public class Plateau
     {
         try
         {
-            StreamWriter sw = new StreamWriter(filename, false);
+            StreamWriter sw = new StreamWriter(filename, true);
             for (int i = 0; i < this._plateau.GetLength(0); i++)
             {
                 for (int j = 0; j < this._plateau.GetLength(1); j++)

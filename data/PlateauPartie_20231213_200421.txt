@@ -1,0 +1,144 @@
+A;B;C; ; ; ;G;H
+E;J;S;D; ; ;K;O
+P;T;C;T;E; ;R;V
+U;E;Z;D;E;F;M;M
+I;I;C;T;E;U;J;N
+S;D;H;U;S;A;G;R
+R;R;C;A;E;N;C;P
+C;B;E;A;I;N;U;S
+
+A; ; ; ; ; ;G;H
+E;B; ;D; ; ;K;O
+P;J;C;T;E; ;R;V
+U;T;S;D;E;F;M;M
+I;E;C;T;E;U;J;N
+S;I;Z;U;S;A;G;R
+R;D;C;A;E;N;C;P
+C;R;H;A;I;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ;D; ; ;K;O
+ ;B;C;T;E; ;R;V
+A;J;S;D;E;F;M;M
+E;T;C;T;E;U;J;N
+P;E;Z;U;S;A;G;R
+U;D;C;A;E;N;C;P
+I;R;H;A;I;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ;D; ; ;R;V
+A;J;C;T; ; ;M;M
+E;T;S;D;E;F;J;N
+P;E;C;T;E;U;G;R
+U;D;Z;U;E;A;C;P
+I;R;C;A;S;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ;D; ; ;M;M
+E;T;C;T; ;F;J;N
+P;E;S;D; ;U;G;R
+U;D;C;T;E;A;C;P
+I;R;Z;U;E;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ; ; ; ;M;M
+E;T; ; ; ;F;J;N
+P;E;C;D; ;U;G;R
+U;D;S;T;E;A;C;P
+I;R;C;D;E;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ; ; ; ;M;M
+E;T; ; ; ;F;J;N
+P;E;C; ; ;U;G;R
+U;D;S;D; ;A;C;P
+I;R;C;T;E;N;U;S
+
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ; ; ; ;M;M
+E;T; ; ; ;F;J;N
+P;E;C; ; ;U;G;R
+U;D;S; ; ;A;C;P
+I;R;C;D; ;N;U;S
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ;B; ; ; ; ;K;O
+A;J; ; ; ; ;R;V
+E;T; ; ; ; ;M;M
+P;E;C; ; ;F;J;N
+U;D;S; ; ;U;G;R
+I;R;C;D; ;A;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ;B; ; ; ; ;K;O
+A;J; ; ; ; ;R;V
+E;T; ; ; ; ;M;M
+P;E;C; ; ; ;J;N
+U;D;S; ; ; ;G;R
+I;R;C;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ;B; ; ; ; ;R;V
+A;J; ; ; ; ;M;M
+E;T;C; ; ; ;J;N
+P;E;S; ; ; ;G;R
+U;D;C;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+A; ; ; ; ; ;M;M
+E;B; ; ; ; ;J;N
+P;J;C; ; ; ;G;R
+U;D;S;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+A; ; ; ; ; ;J;N
+E;B;C; ; ; ;G;R
+P;J;S;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ; ; ; ;J;N
+A; ;C; ; ; ;G;R
+P;B;S;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ; ; ; ;J;N
+A; ;C; ; ; ;G;R
+P;B;S;D; ;F;C;P
+
+ ; ; ; ; ; ; ; 
+ ; ; ; ; ; ;G;H
+ ; ; ; ; ; ;K;O
+ ; ; ; ; ; ;R;V
+ ; ; ; ; ; ;M;M
+ ; ; ; ; ; ;J;N
+A; ;C; ; ; ;G;R
+P;B;S;D; ;F;C;P
+
