@@ -165,7 +165,6 @@ public class Plateau
                     result += " ";
                 }
             }
-
             result += "|" + Environment.NewLine;
         }
         result += "------------------------";

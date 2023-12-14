@@ -116,7 +116,7 @@ public class Joueur
         int interval = 100;
         ConsoleKeyInfo cki;
         Stack<char> lettres = new Stack<char>();
-        Console.WriteLine("Choisissez mot et appuyez sur entrer");
+        AnsiConsole.MarkupLine(" [italic]Choisissez mot et appuyez sur entrer[/]");
         do
         {
             // Your code could perform some useful task in the following loop. However,
@@ -128,7 +128,9 @@ public class Joueur
                 _tempsRestantMillis -= interval;
                 if (_tempsRestantMillis <= 0)
                 {
-                    Console.WriteLine("\nTemps écoulé");
+                    Console.WriteLine("\n   Temps écoulé");
+                    Thread.Sleep(1000);
+                    Console.Clear();
                     return null;
                 }
             }
@@ -140,7 +142,7 @@ public class Joueur
                 Array.Reverse(final);
                 string mot = new string(final);
                 
-                Text text = new Text("Temps restant : " + this._tempsRestantMillis/1000);
+                Text text = new Text("Temps restant : " + this._tempsRestantMillis/1000 + " ");
                 text.RightJustified();
                 Console.WriteLine();
                 AnsiConsole.Write(text);

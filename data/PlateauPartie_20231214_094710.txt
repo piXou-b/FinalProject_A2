@@ -1,0 +1,36 @@
+A;B;C; ; ; ;G;H
+E;J;S;D; ; ;K;O
+P;T;C;T;E; ;R;V
+U;E;Z;D;E;F;M;M
+I;I;C;T;E;U;J;N
+S;D;H;U;S;A;G;R
+R;R;C;A;E;N;C;P
+C;B;E;A;I;N;U;S
+
+A; ; ; ; ; ;G;H
+E;B; ;D; ; ;K;O
+P;J;C;T;E; ;R;V
+U;T;S;D;E;F;M;M
+I;E;C;T;E;U;J;N
+S;I;Z;U;S;A;G;R
+R;D;C;A;E;N;C;P
+C;R;H;A;I;N;U;S
+
+A; ; ; ; ; ;G;H
+E;B; ;D; ; ;K;O
+P;J;C;T;E; ;R;V
+U;T;S;D;E;F;M;M
+I;E;C;T;E;U;J;N
+S;I;Z;U;S;A;G;R
+R;D;C;A;E;N;C;P
+C;R;H;A;I;N;U;S
+
+A; ; ; ; ; ;G;H
+E;B; ;D; ; ;K;O
+P;J;C;T;E; ;R;V
+U;T;S;D;E;F;M;M
+I;E;C;T;E;U;J;N
+S;I;Z;U;S;A;G;R
+R;D;C;A;E;N;C;P
+C;R;H;A;I;N;U;S
+

@@ -136,6 +136,7 @@ public class Jeu
                 case "Jouer à partir d’un plateau généré aléatoirement":
                     Plateau plateauRnD = new Plateau();
                     plateauRnD.PersonalizeLetterPoint();
+                    Console.WriteLine();
                     
                     string name3 = AnsiConsole.Ask<string>("What's your [green]name[/], first player?");
                     Joueur joueur3 = new Joueur(name3);
@@ -237,10 +238,8 @@ public class Jeu
         {
             return;
         }
-        Console.WriteLine();
-        Console.WriteLine();
-        AnsiConsole.MarkupLine("[blue]Au tour de " + joueur.Name + "[/]");
-        Text text1 = new Text("Temps restant : " + joueur.TempsRestantSecondes);
+        AnsiConsole.MarkupLine("[blue]  Au tour de " + joueur.Name + "[/]");
+        Text text1 = new Text("Temps restant : " + joueur.TempsRestantSecondes + "  ");
         text1.RightJustified();
         AnsiConsole.Write(text1);
         joueur.aJoue = false;
@@ -264,7 +263,7 @@ public class Jeu
                 RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
                 if (!RechDico)
                 {
-                    AnsiConsole.MarkupLine("[red dim]Mot incorrect[/]");
+                    AnsiConsole.MarkupLine("[red dim]   Mot incorrect[/]");
                     Console.WriteLine();
                 }
             }
@@ -272,7 +271,7 @@ public class Jeu
             RechDico = false;
             if (!RechPlat)
             {
-                AnsiConsole.MarkupLine("[red dim]Mot incorrect[/]");
+                AnsiConsole.MarkupLine("[red dim]   Mot incorrect[/]");
                 Console.WriteLine();
             }
         }
@@ -282,6 +281,8 @@ public class Jeu
         _plateau.MajPlateau();
         
         joueur.aJoue = true;
+        Thread.Sleep(1000);
+        Console.Clear();
     }
     
     /// <summary>

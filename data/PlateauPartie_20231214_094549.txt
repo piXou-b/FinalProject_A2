@@ -1,0 +1,18 @@
+A;B;C;D;E;F;G;H
+E;J;S;T;E;U;K;O
+P;T;C;D;E;A;R;V
+U;E;Z;T;S;N;M;M
+I;I;C;U;E;N;J;N
+S;D;H;A;  ;  ;G;R
+R;R;C;A;I;  ;C;P
+C;B;E;  ;  ;  ;U;S
+
+A;B;C;D;E;F;G;H
+E;J;S;T;E;U;K;O
+P;T;C;D;E;A;R;V
+U;E;Z;T;S;N;M;M
+I;I;C;U;E;N;J;N
+S;D;H;A;  ;  ;G;R
+R;R;  ;A;I;  ;C;P
+C;  ;  ;  ;  ;  ;U;S
+
