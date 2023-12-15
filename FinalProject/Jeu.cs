@@ -251,30 +251,43 @@ public class Jeu
         string? mot = null;
         bool RechDico = false;
         bool RechPlat = false;
-        while (!RechPlat)
+        bool contientMot = true;
+        while (contientMot)
         {
-            while (!RechDico)
+            while (!RechPlat)
             {
-                mot = joueur.LireMot();
-                if (mot == null)
+                while (!RechDico)
                 {
-                    return;
+                    mot = joueur.LireMot();
+                    if (mot == null)
+                    {
+                        return;
+                    }
+                    RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
+                    if (!RechDico)
+                    {
+                        AnsiConsole.MarkupLine("[red dim]   Mot incorrect[/]");
+                        Console.WriteLine();
+                    }
                 }
-                RechDico = _dico.RechDicoRecursif(mot, 0, _dico.Dico.Count - 1);
-                if (!RechDico)
+                RechPlat = _plateau.Recherche_Mot(mot);
+                RechDico = false;
+                if (!RechPlat)
                 {
                     AnsiConsole.MarkupLine("[red dim]   Mot incorrect[/]");
                     Console.WriteLine();
                 }
             }
-            RechPlat = _plateau.Recherche_Mot(mot);
-            RechDico = false;
-            if (!RechPlat)
+
+            contientMot = joueur.Contient(mot);
+            RechPlat = false;
+            if (contientMot)
             {
-                AnsiConsole.MarkupLine("[red dim]   Mot incorrect[/]");
+                AnsiConsole.MarkupLine("[red dim]   Mot déjà mis[/]");
                 Console.WriteLine();
             }
         }
+        
         int point = CalculPointMot(mot);
         joueur.Add_Score(point);
         joueur.Add_Mot(mot);
