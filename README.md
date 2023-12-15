@@ -46,6 +46,8 @@
 
 - Le projet inclut de même des tests unitaires type NUnit testant 5 des plus importantes méthodes du code comme les recherches des mots dans le plateau et le dictionnaire, etc.
 
+  
+
 ## Ce qui apporte un plus à notre projet
 
 ### L’affichage
