@@ -48,7 +48,7 @@
 
   
 
-## Ce qui apporte un plus à notre projet
+# Ce qui apporte un plus à notre projet
 
 ### L’affichage
 
